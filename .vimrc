@@ -66,3 +66,10 @@ let g:lightline = {
 " Sets colorscheme to onedark
 colorscheme onedark
 
+" always open nerdtree when vim starts
+" autocmd vimenter * NERDTree
+
+"open nerdtree if vim starts and no file was specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
