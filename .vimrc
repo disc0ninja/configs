@@ -3,7 +3,7 @@
 " Vundle
 " make sure Vundle stays before any other configurations
 " add Vundle to the runtime path and intitialize
-set rtp+=~/.vim/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle This needs to be before anyother plugin
@@ -27,6 +27,9 @@ Plugin 'itchyny/lightline.vim'
 " Polyglot (languague support and syntax highlighting for ~156 languages
 " inlcuding C, JS, Ruby, Python, Rust, PHP, SH, etc
 Plugin 'sheerun/vim-polyglot'
+
+" NERD Commenter 
+Plugin 'preservim/nerdcommenter'
 
 
 " Plugins should all be above this line

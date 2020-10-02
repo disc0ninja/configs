@@ -97,3 +97,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# alias common programs to  start in the background and send output to /tmp/<program>.log
+alias firefox="firefox >/tmp/firefox.log 2>&1 &!"
+alias spotify="spotify >/tmp/spotify.log 2>&1 &!"
+alias steam="steam >/tmp/steam.log 2>&1 &!"
