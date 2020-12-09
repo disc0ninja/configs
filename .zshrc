@@ -102,3 +102,4 @@ source $ZSH/oh-my-zsh.sh
 alias firefox="firefox >/tmp/firefox.log 2>&1 &!"
 alias spotify="spotify >/tmp/spotify.log 2>&1 &!"
 alias steam="steam >/tmp/steam.log 2>&1 &!"
+alias brave="brave-bin >/tmp/brave.log 2>&1 &!"
