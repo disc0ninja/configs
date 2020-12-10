@@ -57,8 +57,9 @@ set fileformat=unix
     set wildmode=longest:list,full
     " disable auto comment on newline
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions=o
+set termguicolors
 
-" Lighline
+" Lightline
 set laststatus=2
 
 let g:lightline = {

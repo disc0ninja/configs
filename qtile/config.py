@@ -261,18 +261,12 @@ keys = [
 
 groups = []
 
-# FOR QWERTY KEYBOARDS
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0",]
 
-# FOR AZERTY KEYBOARDS
-#group_names = ["ampersand", "eacute", "quotedbl", "apostrophe", "parenleft", "section", "egrave", "exclam", "ccedilla", "agrave",]
 
-#group_labels = ["1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ", "8 ", "9 ", "0",]
-group_labels = ["", "", "", "", "", "", "", "", "", "",]
-#group_labels = ["Web", "Edit/chat", "Image", "Gimp", "Meld", "Video", "Vb", "Files", "Mail", "Music",]
+group_labels = ["", "", "", "", "", "", "", "", "", "",] 
 
 group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall",]
-#group_layouts = ["monadtall", "matrix", "monadtall", "bsp", "monadtall", "matrix", "monadtall", "bsp", "monadtall", "monadtall",]
 
 for i in range(len(group_names)):
     groups.append(
@@ -319,16 +313,20 @@ layouts = [
 # COLORS FOR THE BAR
 
 def init_colors():
-    return [["#2F343F", "#2F343F"], # color 0
-            ["#2F343F", "#2F343F"], # color 1
+    return [["#2E2E2E", "#2E2E2E"], # color 0
+            ["#2E2E2E", "#2E2E2E"], # color 1
             ["#c0c5ce", "#c0c5ce"], # color 2
-            ["#fba922", "#fba922"], # color 3
+            ["#FF8B25", "#FF8B25"], # color 3
             ["#3384d0", "#3384d0"], # color 4
             ["#f3f4f5", "#f3f4f5"], # color 5
             ["#cd1f3f", "#cd1f3f"], # color 6
             ["#62FF00", "#62FF00"], # color 7
-            ["#6790eb", "#6790eb"], # color 8
-            ["#a9a9a9", "#a9a9a9"]] # color 9
+            ["#00c6cf", "#00c6cf"], # color 8
+            ["#a9a9a9", "#a9a9a9"], # color 9
+            ["#324b4c", "#324b4c"]] # color 10
+
+ #static const char col_white[]       = "#ffffff";
+ #14 static const char col_orange[]      = "";
 
 
 colors = init_colors()
@@ -337,7 +335,7 @@ colors = init_colors()
 # WIDGETS FOR THE BAR
 
 def init_widgets_defaults():
-    return dict(font="Noto Sans",
+    return dict(font="Firacode Nerd Font",
                 fontsize = 12,
                 padding = 2,
                 background=colors[1])
@@ -347,20 +345,34 @@ widget_defaults = init_widgets_defaults()
 def init_widgets_list():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list = [
+               widget.CurrentScreen(
+                        font ="FontAwesome",
+                        fontsize = 16,
+                        padding = 6,
+                        active_color = colors[3],
+                        inactive_color = colors[10],
+                        active_text =" ",
+                        inactive_text =" "
+               ),
+               widget.Sep(
+                       linewidth = 1,
+                        padding = 10,
+                        foreground = colors[2],
+                        background = colors[1]
+               ),
                widget.GroupBox(font="FontAwesome",
                         fontsize = 16,
-                        margin_y = -1,
                         margin_x = 0,
                         padding_y = 6,
                         padding_x = 5,
                         borderwidth = 0,
                         disable_drag = True,
-                        active = colors[9],
+                        active = colors[8],
                         inactive = colors[5],
                         rounded = False,
                         highlight_method = "text",
-                        this_current_screen_border = colors[8],
-                        foreground = colors[2],
+                        this_current_screen_border = colors[3],
+                        foreground = colors[5],
                         background = colors[1]
                         ),
                widget.Sep(
@@ -380,8 +392,8 @@ def init_widgets_list():
                         foreground = colors[2],
                         background = colors[1]
                         ),
-               widget.WindowName(font="Noto Sans",
-                        fontsize = 12,
+               widget.WindowName(font="Firacode Nerd Font",
+                        fontsize = 14,
                         foreground = colors[5],
                         background = colors[1],
                         ),
@@ -515,7 +527,7 @@ def init_widgets_list():
                         foreground = colors[5],
                         background = colors[1],
                         fontsize = 12,
-                        format="%Y-%m-%d %H:%M"
+                        format="%m-%d-%Y %I:%M"
                         ),
                widget.Sep(
                         linewidth = 1,
