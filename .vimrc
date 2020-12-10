@@ -31,10 +31,14 @@ Plugin 'sheerun/vim-polyglot'
 " NERD Commenter 
 Plugin 'preservim/nerdcommenter'
 
+Plugin 'vimwiki/vimwiki'
+
 
 " Plugins should all be above this line
 call vundle#end()
 filetype plugin indent on
+filetype plugin on
+
 
 
 
@@ -69,6 +73,10 @@ let g:lightline = {
 " Should be last line in .vimrc
 " Sets colorscheme to onedark
 colorscheme onedark
+
+" vimwiki voodoo
+let g:vimwiki_list = [{'path': '~/Documents/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
+
 
 " always open nerdtree when vim starts
 " autocmd vimenter * NERDTree

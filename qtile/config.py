@@ -471,14 +471,23 @@ def init_widgets_list():
                #          padding = 10,
                #          foreground = colors[2],
                #          background = colors[1]
-               #          ),
-               # widget.Battery(
-               #          font="Noto Sans",
-               #          update_interval = 10,
-               #          fontsize = 12,
-               #          foreground = colors[5],
-               #          background = colors[1],
-	           #          ),
+               widget.TextBox(
+                        font="FontAwesome",
+                        text="  ",
+                        foreground=colors[6],
+                        background=colors[1],
+                        padding = 0,
+                        fontsize=16
+                        ),
+               widget.HDDBusyGraph(
+                        border_color = colors[2],
+                        fill_color = colors[8],
+                        graph_color = colors[8],
+                        background=colors[1],
+                        border_width = 1,
+                        line_width = 1,
+                        type = "box"
+                        ),
                widget.TextBox(
                         font="FontAwesome",
                         text="  ",
@@ -511,14 +520,29 @@ def init_widgets_list():
                         padding = 0,
                         fontsize=16
                         ),
-               widget.Memory(
+               widget.MemoryGraph(
                         font="Noto Sans",
-                        format = '{MemUsed}M/{MemTotal}M',
-                        update_interval = 1,
-                        fontsize = 12,
-                        foreground = colors[5],
-                        background = colors[1],
-                       ),
+                       format = '{MemUsed}M/{MemTotal}M',
+                       update_interval = 1,
+                       fontsize = 12,
+                       foreground = colors[5],
+                       background = colors[1],
+               ),
+               widget.NetGraph(
+                       fontsize = 12,
+                       foreground = colors[5],
+                       background = colors[1],
+ 
+               ),
+
+              # widget.Memory(
+              #          font="Noto Sans",
+              #         format = '{MemUsed}M/{MemTotal}M',
+              #         update_interval = 1,
+              #         fontsize = 12,
+              #         foreground = colors[5],
+              #         background = colors[1],
+              # ),
                widget.Sep(
                         linewidth = 1,
                         padding = 10,
