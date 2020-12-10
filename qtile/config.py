@@ -264,7 +264,7 @@ groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0",]
 
 
-group_labels = ["", "", "", "", "", "", "", "", "", "",] 
+group_labels = ["", "", "", "", "", "", "", "", "", "",] 
 
 group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall",]
 
@@ -323,10 +323,9 @@ def init_colors():
             ["#62FF00", "#62FF00"], # color 7
             ["#00c6cf", "#00c6cf"], # color 8
             ["#a9a9a9", "#a9a9a9"], # color 9
-            ["#324b4c", "#324b4c"]] # color 10
+            ["#324b4c", "#324b4c"], # color 10
+            ["#215578", "#215578"]] # color 11
 
- #static const char col_white[]       = "#ffffff";
- #14 static const char col_orange[]      = "";
 
 
 colors = init_colors()
@@ -347,12 +346,20 @@ def init_widgets_list():
     widgets_list = [
                widget.CurrentScreen(
                         font ="FontAwesome",
-                        fontsize = 16,
+                        fontsize = 24,
                         padding = 6,
                         active_color = colors[3],
-                        inactive_color = colors[10],
+                        inactive_color = colors[11],
                         active_text =" ",
                         inactive_text =" "
+               ),
+               widget.AGroupBox(font="Noto Sans Bold",
+                        fontsize = 12,
+                        margin_x = 3,
+                        padding_y = 6,
+                        borderwidth = 0,
+                        foreground = colors[5],
+                        background = colors[1]
                ),
                widget.Sep(
                        linewidth = 1,
@@ -371,7 +378,10 @@ def init_widgets_list():
                         inactive = colors[5],
                         rounded = False,
                         highlight_method = "text",
+                        other_screen_border = colors[11],
+                        other_current_screen_border = colors[10],
                         this_current_screen_border = colors[3],
+                        this_screen_border = colors[9],
                         foreground = colors[5],
                         background = colors[1]
                         ),
@@ -380,7 +390,7 @@ def init_widgets_list():
                         padding = 10,
                         foreground = colors[2],
                         background = colors[1]
-                        ),
+               ),
                widget.CurrentLayout(
                         font = "Noto Sans Bold",
                         foreground = colors[5],
