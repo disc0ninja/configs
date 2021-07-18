@@ -12,9 +12,9 @@ mv ~/.bashrc ./.bashrc.back
 mv ~/.zshrc ./.zshrc.back
 mv ~/.alacritty.yml ./.alacritty.yml.back
 mv ~/.vimrc ./.vimrc.back
-ln $CLONE_LOCATION/.bashrc ~/.bashrc
-ln $CLONE_LOCATION/.zshrc ~/.zshrc 
-ln $CLONE_LOCATION/.alacritty.yml ~/.alacritty.yml  
-ln $CLONE_LOCATION/.vimrc ~/.vimrc 
+ln -s $CLONE_LOCATION/.bashrc ~/.bashrc
+ln -s $CLONE_LOCATION/.zshrc ~/.zshrc 
+ln -s $CLONE_LOCATION/.alacritty.yml ~/.alacritty.yml  
+ln -s $CLONE_LOCATION/.vimrc ~/.vimrc 
 
 exit 0
