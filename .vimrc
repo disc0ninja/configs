@@ -1,51 +1,11 @@
 " .vimrc
-
-" Vundle
-" make sure Vundle stays before any other configurations
-" add Vundle to the runtime path and intitialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle This needs to be before anyother plugin
-Plugin 'VundleVim/Vundle.vim'
-
-" Plugins go down here
-" Keep Plugin commands between vundle#begin() and vundle$end()
-
-" NERDTree
-Plugin 'preservim/nerdtree'
-
-" Colorizer ColorHighlight
-Plugin 'chrisbra/Colorizer'
-
-" OneDark theme
-Plugin 'joshdick/onedark.vim'
-
-" Lightline
-Plugin 'itchyny/lightline.vim'
-
-" Polyglot (languague support and syntax highlighting for ~156 languages
-" inlcuding C, JS, Ruby, Python, Rust, PHP, SH, etc
-Plugin 'sheerun/vim-polyglot'
-
-" NERD Commenter 
-Plugin 'preservim/nerdcommenter'
-
-Plugin 'vimwiki/vimwiki'
-
-
-" Plugins should all be above this line
-call vundle#end()
 filetype plugin indent on
 filetype plugin on
 
-
-
-
 " Tab Spacing
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 " Converts tabs to spaces
 set expandtab
 set autoindent
@@ -63,25 +23,7 @@ set fileformat=unix
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions=o
 set termguicolors
 
-" Lightline
 set laststatus=2
 
-let g:lightline = {
-            \ 'colorscheme': 'onedark',
-            \}
-
-" Should be last line in .vimrc
-" Sets colorscheme to onedark
-colorscheme onedark
-
-" vimwiki voodoo
-let g:vimwiki_list = [{'path': '~/Documents/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
-
-
-" always open nerdtree when vim starts
-" autocmd vimenter * NERDTree
-
-"open nerdtree if vim starts and no file was specified
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 

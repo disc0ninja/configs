@@ -20,3 +20,9 @@ export NVM_DIR="$HOME/.nvm"
 alias ll="ls -l"
 
 export PATH="$PATH:/$HOME/.local/bin"
+
+# Zet stuff
+export ZETREPO='~/zet'
+alias isosec='date -u +%Y%m%d%H%M%S'
+alias zet='vim $ZETREPO/$(isosec)/README.md'
+alias vi='vim'
