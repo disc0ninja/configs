@@ -41,7 +41,12 @@ ZET () {
 }
 alias zet=ZET
 
+
+# lynx search stuff
+alias ?='lynx -vikeys https://duckduckgo.com/?q=\$1'
+
 alias vi='vim'
+
 
 
 
