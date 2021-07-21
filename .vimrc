@@ -8,7 +8,7 @@ set softtabstop=2
 set shiftwidth=2
 " Converts tabs to spaces
 set expandtab
-set autoindent
+"set autoindent
 set fileformat=unix
 
 " Basic Settings

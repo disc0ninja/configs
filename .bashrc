@@ -8,6 +8,14 @@ if [[ $- != *i* ]] ; then
 	return
 fi
 
+# Add Some Colors to commands
+alias diff="diff --color=auto"
+alias grep="grep --color=auto"
+alias ip="ip --color=auto"
+alias ls="ls --color=auto"
+
+export LESS='-R --use-color -Dd+r$Du+b'
+export MANPAGER='less -R --use-color -Dd+r -Du+b'
 
 # Put your fun stuff here.
 
@@ -18,6 +26,7 @@ export NVM_DIR="$HOME/.nvm"
 
 
 alias ll="ls -l"
+
 
 export PATH="$PATH:/$HOME/.local/bin"
 
