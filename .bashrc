@@ -22,7 +22,18 @@ alias ll="ls -l"
 export PATH="$PATH:/$HOME/.local/bin"
 
 # Zet stuff
-export ZETREPO='~/zet'
+export ZETREPO="$HOME/zet"
 alias isosec='date -u +%Y%m%d%H%M%S'
-alias zet='vim $ZETREPO/$(isosec)/README.md'
+ZET () {
+  ISOSEC=$(isosec)
+  NEWZETPATH=$ZETREPO/$ISOSEC
+  mkdir $NEWZETPATH
+  vim $NEWZETPATH/README.md
+}
+alias zet=ZET
+
 alias vi='vim'
+
+
+
+
