@@ -11,17 +11,16 @@
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
-env:
+#env:
   # TERM variable
   #
   # This value is used to set the `$TERM` environment variable for
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  TERM: xterm-256color
-  
+  #TERM: xterm-256color
 
-window:
+#window:
   # Window dimensions (changes require restart)
   #
   # Number of lines/columns (not pixels) in the terminal. The number of columns
@@ -99,19 +98,12 @@ window:
   # Scrolling distance multiplier.
   #multiplier: 3
 
-# Font configuration
-font:
+# Font Configuration
+#font:
   # Normal (roman) font face
   normal:
-    # Font family
-    #
-    # Default:
-    #   - (macOS) Menlo
-    #   - (Linux/BSD) monospace
-    #   - (Windows) Consolas
-    #family: Hack Nerd Font Mono 
+    #family: monospace
     family: FiraCode Nerd Font
-
     # The `style` can be specified to pick a specific face.
     style: Regular
 
@@ -121,12 +113,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    
-    # family: DroidSansMono Nerd Font Mono 
-    # family: Source Code Pro for Powerline
-    #family: UbuntuMono Nerd Font 
-    # family: Inconsolata Nerd Font Mono
-    # family: RobotoMono Nerd Font Mono
+    #family: monospace
 
     # The `style` can be specified to pick a specific face.
     #style: Bold
@@ -154,7 +141,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 14.0
+  size: 26.0
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -179,7 +166,68 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
-# Colors (Tomorrow Night)
+
+# Colors (Gruvbox dark)
+#colors:
+  primary:
+    # hard contrast background - '#1d2021'
+    background:        &gruvbox_dark_bg '#282828'
+    # soft contrast background - '#32302f'
+    foreground:        '#ebdbb2'
+    bright_foreground: '#fbf1c7'
+    dim_foreground:    '#a89984'
+  cursor:
+    text:   CellBackground
+    cursor: CellForeground
+    vi_mode_cursor:
+      text:   CellBackground
+      cursor: CellForeground
+  # search:
+  #  matches:
+  #   foreground: '#000000'
+  #   background: '#ffffff'
+  #  focused_match:
+  #   foreground: CellBackground
+  #   background: CellForeground
+  #  bar:
+  #    background: ''
+  #    foreground: ''
+  #  line_indicator:
+  #    foreground: None
+  #    background: None
+  selection:
+    text:       CellBackground
+    background: CellForeground
+  bright:
+    black:   '#928374'
+    red:     '#fb4934'
+    green:   '#b8bb26'
+    yellow:  '#fabd2f'
+    blue:    '#83a598'
+    magenta: '#d3869b'
+    cyan:    '#8ec07c'
+    white:   '#ebdbb2'
+  normal:
+    black:   *gruvbox_dark_bg
+    red:     '#cc241d'
+    green:   '#98971a'
+    yellow:  '#d79921'
+    blue:    '#458588'
+    magenta: '#b16286'
+    cyan:    '#689d6a'
+    white:   '#a89984'
+  dim:
+    black:   '#32302f'
+    red:     '#9d0006'
+    green:   '#79740e'
+    yellow:  '#b57614'
+    blue:    '#076678'
+    magenta: '#8f3f71'
+    cyan:    '#427b58'
+    white:   '#928374'
+  # indexed_colors: []
+
+      # Colors (Tomorrow Night)
 #colors:
   # Default colors
   #primary:
@@ -333,7 +381,7 @@ font:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.95
+# background_opacity: 0.95
 
 #selection:
   # This string contains all characters that are used as separators for
@@ -769,4 +817,6 @@ background_opacity: 0.95
   #log_level: Warn
 
   # Print all received window events.
-  #print_events: false
+  #print_events: fals
+  #
+
