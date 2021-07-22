@@ -7,4 +7,4 @@
 # created when the install script was last run use revert.sh
 
 cd
-rm .vimrc .bashrc .alacritty.yml .zshrc
+rm .vimrc .bashrc .alacritty.yml .zshrc $HOME/.local/bin/quick_search

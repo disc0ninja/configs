@@ -17,4 +17,7 @@ ln -s $CLONE_LOCATION/.zshrc ~/.zshrc
 ln -s $CLONE_LOCATION/.alacritty.yml ~/.alacritty.yml  
 ln -s $CLONE_LOCATION/.vimrc ~/.vimrc 
 
+mkdir -p $HOME/.local/bin
+ln -s $CLONE_LOCATION/quick_search.sh $HOME/.local/bin/quick_search
+
 exit 0

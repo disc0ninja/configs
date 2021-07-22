@@ -28,7 +28,7 @@ export NVM_DIR="$HOME/.nvm"
 alias ll="ls -l"
 
 
-export PATH="$PATH:/$HOME/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 # Zet stuff
 export ZETREPO="$HOME/zet"
@@ -43,7 +43,7 @@ alias zet=ZET
 
 
 # lynx search stuff
-alias ?='lynx -vikeys https://duckduckgo.com/?q=\$1'
+alias ?='quick_search'
 
 alias vi='vim'
 
