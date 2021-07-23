@@ -47,6 +47,13 @@ alias ?='quick_search'
 
 alias vi='vim'
 
+# PS1 functions and colors
+GREEN="\[$(tput setaf 2)\]"
+BLUE="\[$(tput setaf 4)\]"
+RESET="\[$(tput sgr0)\]"
+
+PS1="${BLUE}[ ${GREEN}\u@\h${BLUE} ] \w ${RESET}\$ "
+
 
 
 
