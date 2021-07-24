@@ -43,6 +43,7 @@ alias zet=ZET
 
 
 # lynx search stuff
+export LYNX_LSS="$HOME/configs/lynx.lss"
 alias ?='quick_search'
 
 alias vi='vim'
