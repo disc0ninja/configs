@@ -47,6 +47,7 @@ export LYNX_LSS="$HOME/configs/lynx.lss"
 alias ?='quick_search'
 
 alias vi='vim'
+export EDITOR=`which vi`
 
 # PS1 functions and colors
 GREEN="\[$(tput setaf 2)\]"
