@@ -53,35 +53,34 @@ export EDITOR=$(which vim)
 #   PS1   ###########################################
 #####################################################
 # PS1 functions and colors
-GREEN="\[$(tput setaf 2)\]"
-LIGHT_BLUE="\[$(tput setaf 6)\]"
-RED="\[$(tput setaf 9)\]"
-ORANGE="\[$(tput setaf 3)\]"
-BLUE="\[$(tput setaf 4)\]"
-RESET="\[$(tput sgr0)\]"
+GREEN="$(tput setaf 2)"
+LIGHT_BLUE="\[$(tput setaf 6)"
+RED="$(tput setaf 9)"
+ORANGE="$(tput setaf 3)"
+BLUE="$(tput setaf 4)"
+RESET="$(tput sgr0)"
 
 # git branch function should display branch name in
 # orange if master
 # red if master is behind remote
 # green if other
 GIT_BRANCH_PS1_FUNC() {
-
   local CB=$(git branch --show-current 2> /dev/null)
   
   if [ $CB == "master" ]
   then
-    local STATUS=$(git status | grep clean)
-    if [[ $STATUS ]]
+    if [[ -z $(git status --porcelain=2) ]]
     then
-      local RETURN="${ORANGE}$(git branch --show-current)"
+      local RETURN="\001${ORANGE}\002$(git branch --show-current)"
     else
-      local RETURN="${RED}$(git branch --show-current)"
+      local RETURN="\001${RED}\002$(git branch --show-current)"
     fi
   fi
   echo -e "$RETURN"
 }
 
-PS1="${BLUE}[${GREEN}\u@\h${BLUE}] \w \[ $(GIT_BRANCH_PS1_FUNC) \]${RESET}\$ "
+PS1='\[${BLUE}\][\[${GREEN}\]\u@\h\[${BLUE}\]] \w \
+$(GIT_BRANCH_PS1_FUNC) \[${RESET}\]\$ '
 
 
 
