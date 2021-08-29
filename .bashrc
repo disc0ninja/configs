@@ -66,21 +66,28 @@ RESET="$(tput sgr0)"
 # green if other
 GIT_BRANCH_PS1_FUNC() {
   local CB=$(git branch --show-current 2> /dev/null)
-  
+  local C_STAT=$(git status --porcelain=2)
   if [ $CB == "master" ]
   then
-    if [[ -z $(git status --porcelain=2) ]]
+    if [[ -z $C_STAT ]]
     then
-      local RETURN="\001${ORANGE}\002$(git branch --show-current)"
+      local RETURN="\001${ORANGE}\002$CB"
     else
-      local RETURN="\001${RED}\002$(git branch --show-current)"
+      local RETURN="\001${RED}\002$CB"
+    fi
+  else
+    if [[ -z $C_STAT ]]
+      then
+        local RETURN="\001${GREEN}\002$CB"
+    else
+      local RETURN="\001${RED}\002$CB"
     fi
   fi
   echo -e "$RETURN"
 }
 
 PS1='\[${BLUE}\][\[${GREEN}\]\u@\h\[${BLUE}\]] \w \
-$(GIT_BRANCH_PS1_FUNC) \[${RESET}\]\$ '
+\[${RESET}\]($(GIT_BRANCH_PS1_FUNC)\[${RESET}\]) \[${RESET}\]\$ '
 
 
 
