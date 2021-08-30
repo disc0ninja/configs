@@ -1,6 +1,6 @@
 #! /bin/sh
 
-which lynx &2> /dev/null
+which lynx 2&> /dev/null
 
 if [ $? -ne 0 ]
 then
@@ -8,4 +8,4 @@ then
   exit 1
 fi
 
-lynx -vikeys "https://lite.duckduckgo.com/lite?q=$*&kp=-1&kd=-1"
+lynx "https://lite.duckduckgo.com/lite?q=$*&kp=-1&kd=-1"
