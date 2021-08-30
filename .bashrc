@@ -54,7 +54,7 @@ export EDITOR=$(which vim)
 #####################################################
 # PS1 functions and colors
 GREEN="$(tput setaf 2)"
-LIGHT_BLUE="\[$(tput setaf 6)"
+LIGHT_BLUE="$(tput setaf 6)"
 RED="$(tput setaf 9)"
 ORANGE="$(tput setaf 3)"
 BLUE="$(tput setaf 4)"
@@ -65,29 +65,39 @@ RESET="$(tput sgr0)"
 # red if master is behind remote
 # green if other
 GIT_BRANCH_PS1_FUNC() {
-  local CB=$(git branch --show-current 2> /dev/null)
-  local C_STAT=$(git status --porcelain=2)
-  if [ $CB == "master" ]
+  git status 2&> /dev/null
+  if [ "$?" -ne 0 ]
   then
-    if [[ -z $C_STAT ]]
-    then
-      local RETURN="\001${ORANGE}\002$CB"
-    else
-      local RETURN="\001${RED}\002$CB"
-    fi
+    return
   else
-    if [[ -z $C_STAT ]]
+    local CB=$(git branch --show-current 2> /dev/null)
+    local C_STAT=$(git status --porcelain=2)
+    if [ $CB == "master" ]
+    then
+      if [[ -z $C_STAT ]]
       then
-        local RETURN="\001${GREEN}\002$CB"
+        local RETURN="\001${ORANGE}\002$CB"
+      else
+        local RETURN="\001${RED}\002$CB"
+      fi
     else
-      local RETURN="\001${RED}\002$CB"
+      if [[ -z $C_STAT ]]
+        then
+          local RETURN="\001${GREEN}\002$CB"
+      else
+        local RETURN="\001${RED}\002$CB"
+      fi
     fi
+    echo -e " \001${LIGHT_BLUE}\002(\001\033[0m\002$RETURN\001\033[1m${LIGHT_BLUE}\002)"
   fi
-  echo -e "$RETURN"
 }
 
-PS1='\[${BLUE}\][\[${GREEN}\]\u@\h\[${BLUE}\]] \w \
-\[${RESET}\]($(GIT_BRANCH_PS1_FUNC)\[${RESET}\]) \[${RESET}\]\$ '
+PS1='\[\033[1m${BLUE}\][\
+\[${GREEN}\]\u@\h\
+\[${BLUE}\]]\
+ \[${ORANGE}\]\w\
+$(GIT_BRANCH_PS1_FUNC)\[\033[0m\
+ ${RESET}\]\$ '
 
 
 
