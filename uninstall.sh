@@ -6,5 +6,4 @@
 # NOTE: to uninstall and replace with the backup dot files
 # created when the install script was last run use revert.sh
 
-cd
-rm .vimrc .bashrc .alacritty.yml .zshrc $HOME/.local/bin/quick_search
+rm "$HOME"/.vimrc "$HOME"/.bashrc "$HOME"/.alacritty.yml "$HOME"/.zshrc "$HOME"/.local/bin/quick_search
