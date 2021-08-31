@@ -1,8 +1,7 @@
-#! /bin/sh
+#! /bin/bash
 
-which lynx 2&> /dev/null
 
-if [ $? -ne 0 ]
+if [ "$(which lynx 2&> /dev/null)" ]
 then
   echo "Lynx is not installed."
   exit 1
