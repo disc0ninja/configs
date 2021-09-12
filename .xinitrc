@@ -5,6 +5,7 @@
 #[ -f ~/.xprofile ] && .  ~/.xprofile
 exec xrdb -merge ~/.Xresources &
 
+exec redshift &
 exec xscreensaver &
 exec /usr/local/bin/slstatus & 
 #exec urxvtd --quiet --opendisplay --fork &
