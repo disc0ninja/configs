@@ -9,7 +9,7 @@ exec xscreensaver &
 exec /usr/local/bin/slstatus & 
 #exec urxvtd --quiet --opendisplay --fork &
 #exec setxkbmap -option caps:swapescape &
-exec hsetroot -fill ~/configs/multnomah.jpg &
+exec hsetroot -fill ~/configs/multnomah.jpg & 
 exec dbus-launch --exit-with-session dwm
 #exec dbus-launch --exit-with-session qtile
 #exec dbus-launch --exit-with-session leftwm
