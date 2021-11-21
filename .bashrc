@@ -16,6 +16,7 @@ alias ls="ls --color=auto"
 
 export LESS='-R --use-color -Dd+r$Du+b'
 export MANPAGER='less -R --use-color -Dd+r -Du+b'
+export PROMPT_DIRTRIM='2'
 
 # Put your fun stuff here.
 
@@ -68,7 +69,8 @@ GIT_BRANCH_PS1_FUNC() {
   git status 2&> /dev/null
   if [ "$?" -ne 0 ]
   then
-    return
+   #\0331P
+   return
   else
     local CB=$(git branch --show-current 2> /dev/null)
     local C_STAT=$(git status --porcelain=2)
@@ -92,14 +94,10 @@ GIT_BRANCH_PS1_FUNC() {
   fi
 }
 
-PS1='\[\033[1m${BLUE}\][\
-\[${GREEN}\]\u@\h\
-\[${BLUE}\]]\
- \[${ORANGE}\]\w\
-$(GIT_BRANCH_PS1_FUNC)\[\033[0m\
- ${RESET}\]\$ '
+PS1='\[\033[1m${BLUE}\][\[${GREEN}\]\u@\h\[${BLUE}\]]\[${ORANGE}\] \w $(GIT_BRANCH_PS1_FUNC)\[\033[0m${RESET}\]\$ '
 
 
 
 
 
+export GPG_TTY=/dev/pts/1
