@@ -10,7 +10,7 @@ CLONE_LOCATION=$(pwd)
 # then make symlinks from the dotfiles here
 # to "$HOME"/.$dotfile
 mkdir "$HOME"/.backup-dots
-for dotfile in .alacritty.yml .bashrc .vimrc .zshrc .xinitrc 
+for dotfile in .bashrc .vimrc .zshrc .xinitrc 
 do
   if [[ -e "$HOME"/$dotfile ]]
   then
