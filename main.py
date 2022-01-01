@@ -2,8 +2,38 @@
 
 from config import Config
 
-t1 = Config('test', '/home/disc0ninja/configs/test', '/home/disc0ninja/configs/dest/test')
-t1.backup_existing()
-t1.install()
-t1.revert()
+print('This program is designed to make it easy to install\
+      \nconsistent configurations across multiple environments.\
+      \nIt comes with absolutely no warranty to the extent permitted\
+      \nby law')
+
+print('\nWhat would you like to do?\n\
+        (1) Install a config\n\
+        (2) Create a backup of a config\n\
+        (3) Revert a config\n\
+        (4) Exit without making any changes\n')
+
+ans = int(input('Please enter a number\n'))
+if ans == 1:
+    # Install a config
+    pass
+elif ans == 2:
+    # Create a backup of a config
+    pass
+elif ans == 3:
+    # Revert a config
+    pass
+elif ans == 4:
+    # Exit
+    print('\nExiting without making any changes')
+else:
+    # Exit
+    print('\nUnrecognized option. Exiting without making any changes')
+
+    
+
+# t1 = Config('test', '/home/disc0ninja/configs/test', '/home/disc0ninja/configs/dest/test')
+# t1.backup_existing()
+# t1.install()
+# t1.revert()
 
