@@ -30,6 +30,24 @@ else:
     # Exit
     print('\nUnrecognized option. Exiting without making any changes')
 
+def which_configs(action):
+    case = int(input(F'\n\nWhich configs do you wish to {action}?\n'))a
+    if case == 1:
+        # action ALL configs
+    elif case == 2:
+        # action config kitty
+    elif case == 3:
+        # action config bash
+    elif case == 4:
+        # action config vim
+    elif case == 5:
+        # lynx
+    elif case == 6:
+        # xscreensaver
+    elif case == 7:
+        # X11 stuff
+
+
     
 
 # t1 = Config('test', '/home/disc0ninja/configs/test', '/home/disc0ninja/configs/dest/test')
