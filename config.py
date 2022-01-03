@@ -4,7 +4,7 @@ import os
 
 class Config:
 
-    def __init__(self,name, src, dest):
+    def __init__(self ,name, src, dest):
         self.src = src
         self.name = name
         self.dest = dest
@@ -13,7 +13,7 @@ class Config:
        print(F'\n\nAttempting to make a backup of {self.name}')
        if os.path.exists(self.dest):
            os.system(
-                   F'cp {self.dest} {self.dest}.bak'
+                   F'cp -r {self.dest} {self.dest}.bak'
            )
            print(F'Backup created at {self.dest}.bak')
        else:
@@ -23,7 +23,7 @@ class Config:
        print(F'\n\nAttempting to install {self.name} to {self.dest}')
        if os.path.exists(self.src):
            os.system(
-                   F'cp {self.src} {self.dest}'
+                   F'cp -r {self.src} {self.dest}'
            )
            print(F'{self.name} installed to {self.dest}')
        else:
@@ -35,7 +35,7 @@ class Config:
        if os.path.exists(F'{self.dest}.bak'):
            print(F'Attempting to revert {self.name} from backup')
            os.system(
-                   F'cp {self.dest}.bak {self.dest}'
+                   F'cp -r {self.dest}.bak {self.dest}'
            )
            print(F'{self.name} reverted successfully')
        else:
