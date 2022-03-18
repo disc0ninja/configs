@@ -1,4 +1,7 @@
 # ~/.bashrc ~> ~/configs.bashrc
+# GPG
+export GPG_TTY=$(tty)
+gpg-agent --daemon
 
 # Test for an interactive shell.  There is no need to set anything
 # past this point for scp and rcp, and it's important to refrain from
@@ -9,10 +12,10 @@ if [[ $- != *i* ]] ; then
 fi
 
 # Add Some Colors to commands
-alias diff="diff --color=auto"
-alias grep="grep --color=auto"
-alias ip="ip --color=auto"
-alias ls="ls --color=auto"
+#alias diff="diff --color=auto"
+#alias grep="grep --color=auto"
+#alias ip="ip --color=auto"
+#alias ls="ls --color=auto"
 
 export LESS='-R --use-color -Dd+r$Du+b'
 export MANPAGER='less -R --use-color -Dd+r -Du+b'
@@ -96,8 +99,7 @@ GIT_BRANCH_PS1_FUNC() {
 
 PS1='\[\033[1m${BLUE}\][\[${GREEN}\]\u@\h\[${BLUE}\]]\[${ORANGE}\] \w $(GIT_BRANCH_PS1_FUNC)\[\033[0m${RESET}\]\$ '
 
-
-
-
-
 export GPG_TTY=/dev/pts/1
+
+export PATH='/usr/local/opt/coreutils/libexec/gnubin/:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/tpankan/.local/bin'
+ssh-add -K ~/.ssh/id_rsa
