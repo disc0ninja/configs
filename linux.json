@@ -1,0 +1,7 @@
+{
+  ".bashrc": "~",
+  ".zshrc": "~",
+  ".vimrc": "~",
+  ".xscreensaver": "~",
+  "kitty.conf": "~/.config/kitty"
+}
