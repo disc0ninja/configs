@@ -1,84 +1,33 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
+import sys
 import os
+import shutil
+import json
 
-home = os.path.expanduser('~')
+def install_dots(dots_target):
+    home = os.path.expanduser('~')
+    with open(dots_target, 'r') as f:
+        dot_files = json.load(f)
+    for dot_file, dot_dest, in dot_files.items():
+        dest = f'{home}{dot_dest[1:]}/{dot_file}'
+        print(dot_file, dot_dest)
+        if os.path.exists(dest):
+            print(f'{dest} exists. Making a backup at {dest}.bak before proceeding')
+            shutil.copy2(dest, f'{dest}.bak')
+        print(dot_file, dest)
+        shutil.copy2(dot_file, dest)
 
-from config import Config
-
-kitty = Config('kitty', './kitty', F'{home}/.config/kitty')
-bash = Config('bash', '.bashrc', F'{home}/.bashrc')
-vim = Config('vim', '.vimrc', F'{home}/.vimrc')
-xscreensaver = Config('xscreensaver', '.xscreensaver', F'{home}/.xscreensaver')
-
-def select_operation():
-
-    print('This program is designed to make it easy to install\
-        \nconsistent configurations across multiple environments.\
-        \nIt comes with absolutely no warranty to the extent permitted\
-        \nby law')
-
-    print('\nWhat would you like to do?\n\
-        (1) Install a config\n\
-        (2) Create a backup of a config\n\
-        (3) Revert a config\n\
-        (4) Exit without making any changes\n')
-
-    case = int(input('Please enter a number\n'))
-
-    if case == 1:
-        # Install a config
-        select_configs('install()')
-    elif case == 2:
-        # Create a backup of a config
-        select_configs('backup_existing()')
-    elif case == 3:
-        # Revert a config
-        select_configs('revert()')
-    elif case == 4:
-        # Exit
-        print('\nExiting without making any changes')
-    else:
-        # Exit
-        print('\nUnrecognized option. Exiting without making any changes')
-
-def select_configs(operation):
-
-    print(F'\nWhich configs would you like to {operation}?\n\
-        (1) All\n\
-        (2) Kitty\n\
-        (3) bash\n\
-        (4) vim\n\
-        (5) xscreensaver\n\
-        (0) Exit without making any changes\n\
-        ')
-
-    case = int(input('Please enter a number\n'))
-
-    if case == 1:
-        # operation ALL configs
-        all_configs = ['kitty', 'bash', 'vim', 'xscreensaver',]
-        for i in all_configs:
-            cmd = F'{i}.{operation}'
-            exec(cmd)
-    elif case == 2:
-        # operation config kitty
-        cmd = F'kitty.{operation}'
-        exec(cmd)
-    elif case == 3:
-        # operation config bash
-        cmd = F'bash.{operation}'
-        exec(cmd)
-    elif case == 4:
-        # operation config vim
-        cmd = F'vim.{operation}'
-        exec(cmd)
-    elif case == 5:
-        # operation config xscreensaver
-        cmd = F'xscreensaver.{operation}'
-        exec(cmd)
-    elif case == 0:
-        print('Exiting without making any changes')
-
-
-
-select_operation()   
+if sys.platform.startswith('linux'):
+    print('Installing dotfiles for linux')
+    install_dots('linux.json')
+elif sys.platform.startswith('darwin'):
+    print('Installing dotfiles for mac')
+    install_dots('mac.json')
+elif sys.platform.startswith('freebsd'):
+    print('BSD')
+#    install_dots('mac')
+elif sys.platform.startswith('cygwin') or sys.platform.startswith('win32'):
+    print('windows')
+#    install_dots(linux)
+else:
+    print(f'{sys.platform} is not currently supported')
