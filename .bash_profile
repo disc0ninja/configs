@@ -6,6 +6,8 @@ if [[ $- != *i* ]] ; then
 	return
 fi
 
+export MYVIMRC="~/.config/nvim/init.vim"
+
 # GPG
 export GPG_TTY=$(tty)
 #gpg-agent --daemon
@@ -36,8 +38,8 @@ alias zet=ZET
 export LYNX_LSS="$HOME/configs/lynx.lss"
 alias ?='quick_search'
 
-alias vi='vim'
-export EDITOR=$(which vim)
+alias vi='nvim'
+export EDITOR=$(which nvim)
 
 #####################################################
 #   PS1   ###########################################
@@ -80,4 +82,5 @@ ssh-add -q --apple-load-keychain --apple-use-keychain ~/.ssh/id_rsa
 
 export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin/:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.local/bin"
 
-[ -z "$TMUX" ] &&  exec tmux new-session && exit 
+#[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
+[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session;}

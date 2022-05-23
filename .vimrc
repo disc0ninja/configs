@@ -30,3 +30,5 @@ autocmd StdinReadPre * let s:std_in=1
 " Enable spellcheck for text files. 
 autocmd BufRead *.md,*.txt,*.markdown,*.pdf set spell spelllang=en_us
 
+" Fix weird colors in tmux
+set background=dark
