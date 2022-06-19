@@ -69,6 +69,16 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["gruvbox-baby"] = {
+    loaded = true,
+    path = "/home/disc0ninja/.local/share/nvim/site/pack/packer/start/gruvbox-baby",
+    url = "https://github.com/luisiacc/gruvbox-baby"
+  },
+  melange = {
+    loaded = true,
+    path = "/home/disc0ninja/.local/share/nvim/site/pack/packer/start/melange",
+    url = "https://github.com/savq/melange"
+  },
   ["nvim-lsp-installer"] = {
     loaded = true,
     path = "/home/disc0ninja/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
@@ -88,6 +98,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/disc0ninja/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
+  },
+  ["zenburn.nvim"] = {
+    loaded = true,
+    path = "/home/disc0ninja/.local/share/nvim/site/pack/packer/start/zenburn.nvim",
+    url = "https://github.com/phha/zenburn.nvim"
   }
 }
 

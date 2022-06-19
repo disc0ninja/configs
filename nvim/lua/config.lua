@@ -1,10 +1,16 @@
 -- config.lua
 
+-- Files
+vim.opt.encoding = 'utf-8'
+vim.opt.autoindent = true
+vim.cmd([[syntax on]])
+vim.cmd([[set number relativenumber]])
+
 -- Tabs
 vim.opt.expandtab = true -- converts tabs to spaces
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
-
+vim.opt.tabstop = 2
 
 -- Treesitter
 local configs = require'nvim-treesitter.configs'
