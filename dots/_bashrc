@@ -1,3 +1,41 @@
+# .bashrc
+##################################################
+#   Pre   ########################################
+##################################################
+
+#   Information   ################################    
+
+# More info as well as other configs/dot files can be found at:
+# https://github.com/disc0ninja/configs
+
+# This file attempts to be usable on both Linux and MacOs
+# systems with bash installed. To help account for differences
+# in certain programs that may be utilized here the file has
+# been laid out with 4 distinct sections as follows:
+
+# Section 1: Pre
+#   This section contains information about the rest of the
+#   file and additionally runs any checks that should happen
+#   immediately when sourcing the file (eg. checking if we're
+#   in a login shell)
+
+# Section 2: MacOS Only
+#   This section contains all the things that apply ONLY to
+#   MacOS systems. 
+
+# Section 3: GNU/Linux Only
+
+# Section 4: Common
+#   This section contains things that should be applied 
+#   regardless of which OS is sourcing the file.
+#
+# All Sections (except Section 1: Pre) are then organized into
+# sub-sections with specific duties (eg. variables, Functions, etc)
+# Each section will start with a  3 line comment header similar
+# to what is at the top of this page.
+# Additionally each sub-section will have a single line
+# comment header describing it.
+
 # Test for an interactive shell.  There is no need to set anything
 # past this point for scp and rcp, and it's important to refrain from
 # outputting anything in those cases.
@@ -6,53 +44,54 @@ if [[ $- != *i* ]] ; then
 	return
 fi
 
-export MYVIMRC="~/.config/nvim/init.vim"
+##################################################
+#   MacOS Only   #################################
+##################################################
 
-# GPG
-export GPG_TTY=$(tty)
-#gpg-agent --daemon
-eval $(gpg-connect-agent --quiet /bye)
+#   Aliases (Linux)   ###########################
+if [[ "$OSTYPE" = "darwin" ]]; then
+  # GPG
+  export GPG_TTY=$(tty)
+  #gpg-agent --daemon
+  eval $(gpg-connect-agent --quiet /bye)
+  ssh-add -q --apple-load-keychain --apple-use-keychain ~/.ssh/id_rsa
+else
+##################################################
+#   Linux Only   #################################
+##################################################
 
-# Add Some Colors to commands
-alias diff="diff --color=auto"
-alias grep="grep --color=auto"
-alias ip="ip --color=auto"
-alias ls="ls --color=auto"
-alias ll="ls -l"
-alias tmux="TERM=screen-256color-bce tmux"
+#   Aliases (Linux)   ############################
+  alias diff="diff --color=auto"
+  alias grep="grep --color=auto"
+  alias ip="ip --color=auto"
+  alias ls="ls --color=auto"
+  alias ll="ls -l"
+fi
+##################################################
+#   Common Options ###############################
+##################################################
 
-export PROMPT_DIRTRIM='2'
+#   variables (Common)   #########################
+export PROMPT_DIRTRIM="2"
+export zet_repo="$HOME/zet"
 
-# Zet stuff
-export ZETREPO="$HOME/zet"
-alias isosec='date -u +%Y%m%d%H%M%S'
-ZET () {
-  ISOSEC=$(isosec)
-  NEWZETPATH=$ZETREPO/$ISOSEC
-  mkdir $NEWZETPATH
-  vim $NEWZETPATH/README.md
-}
-alias zet=ZET
+#   Functions (Common)   #########################
 
-# lynx search stuff
-export LYNX_LSS="$HOME/configs/lynx.lss"
-alias ?='quick_search'
-
-alias vi='nvim'
-export EDITOR=$(which nvim)
-
-#####################################################
-#   PS1   ###########################################
-#####################################################
-# PS1 functions and colors
-
-# allows quickly grepping for different things and getting the status code
-git_status_check() {
-  git status --porcelain=2 2> /dev/null | grep "$1" &> /dev/null
+# zet() is a function to quickly open a new markdown file with $EDITOR 
+# with a globally uniquie name (isosec) to store digital notes. 
+zet() {
+  new_zet_path="$zet_repo/$(isosec)"
+  mkdir "$new_zet_path"
+  vi "${new_zet_path}/README.md"
 }
 
+# ps1_git_branch is used to check and report the branch name/status to the $PS1 variable
 ps1_git_branch(){
   local branch="$(git branch 2> /dev/null | grep '^*' | cut -f 2 -d ' ')"
+  # git_status_check() is a helper function that used to calculate if a branch has dirty/untracked files
+  git_status_check() {
+    git status --porcelain=2 2> /dev/null | grep "$1" &> /dev/null
+  }
   if [[ -n $branch ]]; then
     git_status_check '^?' 
     tracked="$?"
@@ -63,24 +102,28 @@ ps1_git_branch(){
     elif [[ "$tracked" -eq 0 ]]; then
         printf "(\001\033[93m\002${branch}\001\033[m\002)\001\033[31m\002✗\001\033[m\002"
     else
-      if [[ "$committed" -eq 0 && $branch == 'master' ]]; then # uncommitted
+      if [[ "$committed" -eq 0 && $branch == 'master' ]]; then
         printf "\001\033[1;31m\002(${branch})\001\033[m\002\001\033[35m\002✔\001\033[m\002"
-      elif [[ "$committed" -eq 0 ]]; then # uncommitted
+      elif [[ "$committed" -eq 0 ]]; then
         printf "(\001\033[92m\002${branch}\001\033[m\002)\001\033[92m\002✔\001\033[m\002"
-      else # clean
+      else
         printf "(\001\033[1;92m\002${branch}\001\033[m\002)"
       fi
     fi
   fi
 }
 
+#   Aliases (Common)   ###########################
+alias isosec="date -u +%Y%m%d%H%M%S"
+alias tmux="TERM=screen-256color-bce tmux"
+alias vi="nvim"
 
+#   $PS1   ##########################################
 PS1='[\[\e[35m\]\u\[\e[m\]@\[\e[35m\]\h\[\e[m\]][\[\e[33m\]\w\[\e[m\]]'
 PS1+='$(ps1_git_branch)\$ '
 
-ssh-add -q --apple-load-keychain --apple-use-keychain ~/.ssh/id_rsa
-
+#   $PATH   ########################################## 
 export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin/:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.local/bin"
 
-#[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
+#   Connect or launch Tmux   ######################### 
 [ -z "$TMUX"  ] && { tmux attach || exec tmux new-session;}
