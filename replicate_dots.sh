@@ -5,7 +5,7 @@
 # recursively copies the files/dirs inside of XDG_CONFIG
 # to either $XDG_CONFIG_HOME or ~/.config.
 pushd "dots"
-ls |grep '^_' |grep -v "$1" | sed "p;s|\_|$HOME/\.|" | xargs -n2 cp
+ls | grep '^_' | sed "p;s|\_|$HOME/\.|" | xargs -n2 cp
 if [[ -n $XDG_CONFIG_HOME ]]; then
   cp -r XDG_CONFIG/* $XDG_CONFIG_HOME/.config/
 else
