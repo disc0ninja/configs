@@ -1,7 +1,7 @@
 # .bash_profile
 # https://github.com/disc0ninja/configs
 
-if [[ "$-" != "*i*" ]]; then
+if [[ "$-" != *i* ]]; then
   # Shell is non-interactive. Be done now!
   return
 fi
