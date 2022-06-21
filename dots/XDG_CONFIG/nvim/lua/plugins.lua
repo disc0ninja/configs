@@ -14,10 +14,11 @@ require('packer').startup(function(use)
 	-- LSP
 	use  'williamboman/nvim-lsp-installer'
 	use  'neovim/nvim-lspconfig'
-        -- Visual - Themes/Colorschemes
-        use  'phha/zenburn.nvim'
-        use  'luisiacc/gruvbox-baby'
-        use 'savq/melange'
+  -- Visual - Themes/Colorschemes
+  use  'phha/zenburn.nvim'
+  use  'luisiacc/gruvbox-baby'
+  use 'savq/melange'
+
 	if packer_bootstrap then
 		require('packer').sync()
 	end
