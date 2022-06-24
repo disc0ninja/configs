@@ -49,7 +49,7 @@ fi
 ##################################################
 
 #   Aliases (Linux)   ###########################
-if [[ "$OSTYPE" = "darwin" ]]; then
+if [[ "$OSTYPE" =~ "darwin" ]]; then
   # GPG
   export GPG_TTY=$(tty)
   #gpg-agent --daemon
