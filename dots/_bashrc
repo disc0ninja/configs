@@ -85,6 +85,16 @@ zet() {
   vi "${new_zet_path}/README.md"
 }
 
+# zet search function
+# aggregates results into a temp file and pipes to less
+zet_search() {
+  cd "$zet_repo"
+  git grep -l $@ |xargs -I%  cat % >> /tmp/zet_search.txt;
+  less /tmp/zet_search.txt
+  rm /tmp/zet_search.txt
+  cd - 2>&1 >/dev/null
+}
+
 # ps1_git_branch is used to check and report the branch name/status to the $PS1 variable
 ps1_git_branch(){
   local branch="$(git branch 2> /dev/null | grep '^*' | cut -f 2 -d ' ')"
@@ -117,6 +127,8 @@ ps1_git_branch(){
 alias isosec="date -u +%Y%m%d%H%M%S"
 alias tmux="TERM=screen-256color-bce tmux"
 alias vi="nvim"
+alias z="zet"
+alias zs="zet_search -i"
 
 #   $PS1   ##########################################
 PS1='[\[\e[35m\]\u\[\e[m\]@\[\e[35m\]\h\[\e[m\]][\[\e[33m\]\w\[\e[m\]]'
