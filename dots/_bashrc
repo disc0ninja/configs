@@ -64,8 +64,6 @@ else
   alias diff="diff --color=auto"
   alias grep="grep --color=auto"
   alias ip="ip --color=auto"
-  alias ls="ls --color=auto"
-  alias ll="ls -l"
 fi
 ##################################################
 #   Common Options ###############################
@@ -129,6 +127,8 @@ alias tmux="TERM=screen-256color-bce tmux"
 alias vi="nvim"
 alias z="zet"
 alias zs="zet_search -i"
+alias ls="ls --color=auto"
+alias ll="ls -l"
 
 #   $PS1   ##########################################
 PS1='[\[\e[35m\]\u\[\e[m\]@\[\e[35m\]\h\[\e[m\]][\[\e[33m\]\w\[\e[m\]]'
@@ -136,6 +136,3 @@ PS1+='$(ps1_git_branch)\$ '
 
 #   $PATH   ########################################## 
 export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin/:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.local/bin"
-
-#   Connect or launch Tmux   ######################### 
-#[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session;}
