@@ -15,9 +15,13 @@ require('packer').startup(function(use)
 	use  'williamboman/nvim-lsp-installer'
 	use  'neovim/nvim-lspconfig'
   -- Visual - Themes/Colorschemes
-  use  'phha/zenburn.nvim'
-  use  'luisiacc/gruvbox-baby'
+  use 'phha/zenburn.nvim'
+  use 'luisiacc/gruvbox-baby'
   use 'savq/melange'
+  use 'patstockwell/vim-monokai-tasty'
+  use 'jacoborus/tender.vim'
+  use 'navarasu/onedark.nvim'
+  use 'JoosepAlviste/palenightfall.nvim'
 
 	if packer_bootstrap then
 		require('packer').sync()

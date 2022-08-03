@@ -63,5 +63,9 @@ require'lspconfig'.sumneko_lua.setup {
     },
   },
 }
+require'lspconfig'.ansiblels.setup{}
+require'lspconfig'.bashls.setup{}
+require'lspconfig'.pyright.setup{}
 require'lspconfig'.gopls.setup{}
+
 vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc' -- LSP completion
