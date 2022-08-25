@@ -47,20 +47,20 @@ fi
 ##################################################
 #   MacOS Only   #################################
 ##################################################
-
-#   Aliases (Linux)   ###########################
 if [[ "$OSTYPE" =~ "darwin" ]]; then
+  # Aliases (Macos)   ###########################
+  alias fly='fly -t main'
   # GPG
   export GPG_TTY=$(tty)
   #gpg-agent --daemon
   eval $(gpg-connect-agent --quiet /bye)
   ssh-add -q --apple-load-keychain --apple-use-keychain ~/.ssh/id_rsa
+  export JIRA_AUTH_TYPE='bearer'
 else
 ##################################################
 #   Linux Only   #################################
 ##################################################
-
-#   Aliases (Linux)   ############################
+  # Aliases (Linux)   ############################
   alias diff="diff --color=auto"
   alias grep="grep --color=auto"
   alias ip="ip --color=auto"
@@ -72,6 +72,8 @@ fi
 #   variables (Common)   #########################
 export PROMPT_DIRTRIM="2"
 export zet_repo="$HOME/zet"
+export EDITOR="$(which nvim)"
+export VISUAL="$(which nvim)"
 
 #   Functions (Common)   #########################
 
