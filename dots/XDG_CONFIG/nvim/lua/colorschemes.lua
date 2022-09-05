@@ -8,4 +8,4 @@ vim.opt.termguicolors = true
 --   style = 'darker'
 -- }
 -- require('onedark').load()
-require('palenightfall').setup()
+require('palenightfall').setup{}

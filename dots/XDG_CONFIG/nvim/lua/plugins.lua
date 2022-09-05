@@ -23,6 +23,29 @@ require('packer').startup(function(use)
   use 'navarasu/onedark.nvim'
   use 'JoosepAlviste/palenightfall.nvim'
 
+  -- auto-pairing
+  use {
+	  "windwp/nvim-autopairs",
+      config = function() require("nvim-autopairs").setup {
+      map_cr = true
+    } end,
+  }
+
+  -- nvim-tree
+  use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } }
+
+  -- telescope
+  use { 'nvim-telescope/telescope.nvim', tag = '0.1.x', requires = { {'nvim-lua/plenary.nvim'} } }
+
+  -- lualine
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
+
+  -- bufferline
+  use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
+
 	if packer_bootstrap then
 		require('packer').sync()
 	end
