@@ -164,6 +164,7 @@ require('lualine').setup {
  -- bufferline
 require('bufferline').setup{
   options = {
+    numbers = 'buffer_id',
     diagnostics = 'nvm_lsp',
     separator_style = 'thin',
   }

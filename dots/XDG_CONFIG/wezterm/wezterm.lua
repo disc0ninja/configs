@@ -89,4 +89,6 @@ return {
 --  end
 --  window:set_right_status(name or '')
 --  end),
+  --
+  warn_about_missing_glyphs = false
 }
