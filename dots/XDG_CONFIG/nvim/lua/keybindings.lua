@@ -9,10 +9,16 @@ vim.api.nvim_set_keymap('n', '<Leader>ll', ':source ~/.config/nvim/init.lua<CR>'
 -- splits
 vim.api.nvim_set_keymap('n', '<Leader>;', ':vne<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', "<Leader>'", ':new<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>j', '<C-w>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>k', '<C-W><C-J>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>l', '<C-W><C-K>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>h', '<C-W><C-H>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>j', '<C-w><C-j>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>k', '<C-w><C-k>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>l', '<C-w><C-l>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>h', '<C-w><C-h>', { noremap = true, silent = true })
+
+-- resizing
+vim.api.nvim_set_keymap('n', '<Leader><S-j>', ':res -5<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader><S-k>', ':res +5<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader><S-h>', ':vert :res -5<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader><S-l>', ':vert :res +5<CR>', { noremap = true, silent = true })
 
 -- telescope
 vim.api.nvim_set_keymap('n', '<Leader>ff', [[<Cmd>lua require('telescope.builtin').find_files()<CR>]], { noremap = true, silent = true })
