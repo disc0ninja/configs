@@ -16,8 +16,8 @@ return {
     brightness = 0.7,
   },
   use_fancy_tab_bar = false,
-  tab_bar_at_bottom = true,
-  hide_tab_bar_if_only_one_tab = true,
+  tab_bar_at_bottom = false,
+  hide_tab_bar_if_only_one_tab = false,
   window_frame = {
     -- The font used in the tab bar.
     -- Roboto Bold is the default; this font is bundled

@@ -27,6 +27,7 @@ configs.setup {
 -- Code folding
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevel = 1
 
 -- LSP
 require("nvim-lsp-installer").setup({
@@ -81,9 +82,8 @@ vim.api.nvim_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 vim.o.completeopt = "menuone,noinsert"
 vim.api.nvim_command('inoremap <C-space> <C-x><C-o>')
 
-
 local npairs = require("nvim-autopairs")
-local Rule = require('nvim-autopairs.rule')
+--local Rule = require('nvim-autopairs.rule')
 
 npairs.setup({
     map_cr = true,
@@ -96,12 +96,6 @@ npairs.setup({
 })
 
 -- nvim-tree
--- examples for your init.lua
-
--- empty setup using defaults
-require("nvim-tree").setup()
-
--- OR setup with some options
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = {
@@ -145,8 +139,8 @@ require('lualine').setup {
     lualine_b = {'branch', 'diff', 'diagnostics'},
     lualine_c = {'filename'},
     lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
+    lualine_y = {'location'},
+    lualine_z = {'progress'}
   },
   inactive_sections = {
     lualine_a = {},
