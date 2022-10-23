@@ -10,7 +10,7 @@ end
 -- Plugins
 require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim' -- call packer itself first so it doesn't try to delete itself
-        use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use 'nvim-treesitter/nvim-treesitter'
 	-- LSP
 	use  'williamboman/nvim-lsp-installer'
 	use  'neovim/nvim-lspconfig'
@@ -45,6 +45,17 @@ require('packer').startup(function(use)
 
   -- bufferline
   use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
+
+  -- indent-line
+  use 'lukas-reineke/indent-blankline.nvim'
+  
+  -- peek
+  use { 'toppair/peek.nvim', run = 'deno task --quiet build:fast' }
+
+  use {
+    'lewis6991/gitsigns.nvim',
+    tag = 'v0.5'
+  }
 
 	if packer_bootstrap then
 		require('packer').sync()

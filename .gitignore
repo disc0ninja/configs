@@ -2,3 +2,5 @@
 */*swp
 __pycache__
 __pycahce__/*
+dots/XDG_CONFIG/nvim/plugin
+dots/XDG_CONFIG/nvim/plugin/*

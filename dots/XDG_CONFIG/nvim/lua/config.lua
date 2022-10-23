@@ -83,7 +83,6 @@ vim.o.completeopt = "menuone,noinsert"
 vim.api.nvim_command('inoremap <C-space> <C-x><C-o>')
 
 local npairs = require("nvim-autopairs")
---local Rule = require('nvim-autopairs.rule')
 
 npairs.setup({
     map_cr = true,
@@ -163,3 +162,34 @@ require('bufferline').setup{
     separator_style = 'thin',
   }
 }
+
+-- indent-line
+vim.opt.list = true
+vim.opt.listchars:append "space: "
+vim.opt.listchars:append "eol:↴"
+vim.cmd [[highlight IndentBlanklineIndent guifg=#374147 gui=nocombine]]
+--vim.g.indent_blankline_use_treesitter = true
+
+require("indent_blankline").setup {
+    show_end_of_line = true,
+    space_char_blankline = ".",
+    char_highlight_list = {"IndentBlanklineIndent"},
+    space_char_highlight_list = {"IndentBlanklineIndent"},
+}
+
+-- peek
+-- default config:
+require('peek').setup({
+  auto_load = true,         -- whether to automatically load preview when entering another markdown buffer
+  close_on_bdelete = true,  -- close preview window on buffer delete
+  syntax = true,            -- enable syntax highlighting, affects performance
+  theme = 'dark',           -- 'dark' or 'light'
+  update_on_change = true,
+  throttle_at = 200000, -- start throttling when file exceeds this amount of bytes in size
+  throttle_time = 5000  -- that has to pass before starting new render
+})
+vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
+vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
+
+-- gitsigns
+require('gitsigns').setup()
