@@ -56,6 +56,7 @@ if [[ "$OSTYPE" =~ "darwin" ]]; then
   eval $(gpg-connect-agent --quiet /bye)
   ssh-add -q --apple-load-keychain --apple-use-keychain ~/.ssh/id_rsa
   export JIRA_AUTH_TYPE='bearer'
+  export PATH="$HOME/.nvm/versions/node/v16.17.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/opt/coreutils/libexec/gnubin/:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.local/bin:/Users/tpankan/Library/Python/3.9/bin"
 else
 ##################################################
 #   Linux Only   #################################
@@ -143,3 +144,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin/:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.local/bin"
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
+export HISTSIZE=10000
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
