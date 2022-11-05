@@ -57,6 +57,8 @@ require('packer').startup(function(use)
     tag = 'v0.5'
   }
 
+  use { 'fladson/vim-kitty' }
+
 	if packer_bootstrap then
 		require('packer').sync()
 	end

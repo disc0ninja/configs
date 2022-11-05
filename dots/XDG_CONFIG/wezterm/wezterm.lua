@@ -10,6 +10,12 @@ if wezterm.target_triple == 'x86_64-apple-darwin' then
   end)
 end
 
+-- on update
+wezterm.on('user-var-changed', function(window, pane, name, value)
+  wezterm.log_info('var', name, value)
+end)
+
+
 return {
   --------------------------------------------------
   -- Themeing
