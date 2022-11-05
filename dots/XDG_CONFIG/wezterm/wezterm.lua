@@ -1,17 +1,28 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
 local mux = wezterm.mux
-wezterm.on("gui-startup", function()
-  local tab, pane, window = mux.spawn_window{}
-  window:gui_window():maximize()
+
+-- Open fullscreen on macos
+if wezterm.target_triple == 'x86_64-apple-darwin' then
+  wezterm.on("gui-startup", function()
+    local tab, pane, window = mux.spawn_window{}
+    window:gui_window():maximize()
+  end)
+end
+
+-- on update
+wezterm.on('user-var-changed', function(window, pane, name, value)
+  wezterm.log_info('var', name, value)
 end)
+
+
 return {
   --------------------------------------------------
   -- Themeing
   --------------------------------------------------
+  --color_scheme = "Abernathy",
   color_scheme = "Abernathy",
   inactive_pane_hsb = {
-    window_background_opacity = 0.99,
     saturation = 0.7,
     brightness = 0.7,
   },
@@ -19,21 +30,13 @@ return {
   tab_bar_at_bottom = false,
   hide_tab_bar_if_only_one_tab = false,
   window_frame = {
-    -- The font used in the tab bar.
-    -- Roboto Bold is the default; this font is bundled
-    -- with wezterm.
-    -- Whatever font is selected here, it will have the
-    -- main font setting appended to it to pick up any
-    -- fallback fonts you may have used there.
-    font = wezterm.font { family = 'Roboto', weight = 'Bold' },
-
     -- The size of the font in the tab bar.
     -- Default to 10. on Windows but 12.0 on other systems
     font_size = 10.0,
 
     -- The overall background color of the tab bar when
     -- the window is focused
-    active_titlebar_bg = '#333333',
+    active_titlebar_bg = '#111416',
 
     -- The overall background color of the tab bar when
     -- the window is not focused
@@ -42,6 +45,8 @@ return {
   --------------------------------------------------
   -- Configuration
   --------------------------------------------------
+  -- get rid of annoying error about missing glyphs
+  warn_about_missing_glyphs = false,
   scrollback_lines = 100000,
   enable_scroll_bar = true,
   --------------------------------------------------
@@ -63,12 +68,13 @@ return {
     { key = 'k', mods = 'LEADER', action = act.AdjustPaneSize { 'Up', 5 } },
     { key = 'l', mods = 'LEADER', action = act.AdjustPaneSize { 'Right', 5 } },
     { key = 'r', mods = 'LEADER', action = act.ActivateKeyTable { name = 'resize_panes', timeout_milliseconds = 15000, replace_current = false, one_shot = false } },
-    { key = 'R', mods = 'ALT', action = act.ActivateKeyTable { name = 'broadcast', timeout_milliseconds = 15000, replace_current = false, one_shot = false } },
+    { key = 'R', mods = 'ALT', action = act.ResetFontAndWindowSize },
     { key = 'Space', mods = 'LEADER', action = act.RotatePanes 'Clockwise' },
     { key = 'Space', mods = 'LEADER|SHIFT', action = act.RotatePanes 'CounterClockwise', },
     { key = 's', mods = 'LEADER', action = act.PaneSelect { alphabet = '1234567890', }, },
     { key = 'S', mods = 'LEADER', action = act.PaneSelect { mode = 'SwapWithActive', } },
-    { key="z" , mods="LEADER", action = "TogglePaneZoomState" },
+    --{ key="z" , mods="LEADER", action = "TogglePaneZoomState" },
+    { key="z" , mods="LEADER", action = act.ActivateKeyTable { name = 'zoom_actions', timeout_milliseconds = 1000, replace_current = false, one_shot = false} },
     { key="x", mods="LEADER", action  = act { CloseCurrentPane = { confirm = true } } },
   },
   --------------------------------------------------
@@ -82,18 +88,10 @@ return {
       { key = 'l', action = act.AdjustPaneSize { 'Right', 1 } },
       { key = 'Escape', action = act.PopKeyTable }
     },
-    broadcast = {
-      { key = 'Escape', action = act.PopKeyTable }
+    zoom_actions = {
+      { key="z" , action = "TogglePaneZoomState" },
+      { key="+" , action = act.IncreaseFontSize },
+      { key="-" , action = act.DecreaseFontSize },
     },
   },
-
---  wezterm.on('update-right-status', function(window, pane)
---  local name = window:active_key_table()
---  if name then
---    name = 'TABLE: ' .. name
---  end
---  window:set_right_status(name or '')
---  end),
-  --
-  warn_about_missing_glyphs = false
 }

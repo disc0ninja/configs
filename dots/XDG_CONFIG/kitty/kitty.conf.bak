@@ -202,7 +202,9 @@
 
 #: }}}
 
-scrollback_lines 10000
+: Scrollback {{{
+
+ scrollback_lines 10000
 
 #: Number of lines of history to keep in memory for scrolling back.
 #: Memory is allocated on demand. Negative numbers are (effectively)
@@ -254,6 +256,7 @@ scrollback_lines 10000
 #: for high precision scrolling devices on platforms such as macOS and
 #: Wayland. Use negative numbers to change scroll direction.
 
+: }}}
 
 #: Mouse {{{
 
@@ -501,6 +504,7 @@ scrollback_lines 10000
 
 #: }}}
 
+: Window layout {{{
 
 # remember_window_size  yes
 # initial_window_width  640
@@ -515,23 +519,22 @@ scrollback_lines 10000
 
 # enabled_layouts tall:bias=;full_size=1;mirrored=false
 #enabled_layouts *
-enabled_layouts splits:split_axis=vertical,stack,grid
+enabled_layouts splits:split_axis=vertical
 
 
-map alt+; launch --allow-remote-control --location=vsplit
-map alt+' launch --allow-remote-control --location=hsplit
-map alt+shift+r layout_action rotate
-map alt+shift+z toggle_layout stack
+ map alt+; launch --allow-remote-control --location=vsplit
+ map alt+' launch --allow-remote-control --location=hsplit
+ map alt+shift+r layout_action rotate
 
-map alt+shift+k move_window up
-map alt+shift+h move_window left
-map alt+shift+l move_window right
-map alt+shift+j move_window down
+ map alt+shift+k move_window up
+ map alt+shift+h move_window left
+ map alt+shift+l move_window right
+ map alt+shift+j move_window down
 
-map alt+h neighboring_window left
-map alt+l neighboring_window right
-map alt+k neighboring_window up
-map alt+j neighboring_window down
+ map alt+h neighboring_window left
+ map alt+l neighboring_window right
+ map alt+k neighboring_window up
+ map alt+j neighboring_window down
 
 #: The enabled window layouts. A comma separated list of layout names.
 #: The special value all means all layouts. The first listed layout
@@ -605,7 +608,7 @@ map alt+j neighboring_window down
 #: The color for the border of inactive windows in which a bell has
 #: occurred
 
-# inactive_text_alpha 0.8
+ inactive_text_alpha 0.8
 
 #: Fade the text in inactive windows by the specified amount (a number
 #: between zero and one, with zero being fully faded).
@@ -649,7 +652,11 @@ map alt+j neighboring_window down
 #: confirmation. This confirmation also applies to requests to quit
 #: the entire application (all OS windows, via the quit action).
 
-tab_bar_edge top
+: }}}
+
+: Tab bar {{{
+
+ tab_bar_edge top
 
 #: Which edge to show the tab bar on, top or bottom
 
@@ -664,7 +671,7 @@ tab_bar_edge top
 #: the second number is the margin between the tab bar and the
 #: contents of the current tab.
 
-tab_bar_style powerline
+ tab_bar_style powerline
 
 #: The tab bar style, can be one of:
 
@@ -681,7 +688,7 @@ tab_bar_style powerline
 #:     for the https://sw.kovidgoyal.net/kitty/actions/#select-tab action which presents you with a list
 #:     of tabs and allows for easy switching to a tab.
 
-tab_bar_min_tabs 2
+ tab_bar_min_tabs 2
 
 #: The minimum number of tabs that must exist before the tab bar is
 #: shown
@@ -703,24 +710,24 @@ tab_bar_min_tabs 2
 #: can change the number of cells used by adding/removing entries to
 #: this list.
 
-tab_separator " ┇"
+ tab_separator " ┇"
 
 #: The separator between tabs in the tab bar when using separator as
 #: the tab_bar_style.
 
-tab_powerline_style slanted
+ tab_powerline_style slanted
 
 #: The powerline separator style between tabs in the tab bar when
 #: using powerline as the tab_bar_style, can be one of: angled,
 #: slanted, or round.
 
-tab_activity_symbol 🖖
+ tab_activity_symbol 🖖
 
 #: Some text or a unicode symbol to show on the tab if a window in the
 #: tab that does not have focus has some activity. If you want to use
 #: leading or trailing spaces surround the text with quotes.
 
-tab_title_template "{index}:{title}"
+ tab_title_template "{index}:{title}"
 
 #: A template to render the tab title. The default just renders the
 #: title. If you wish to include the tab-index as well, use something
@@ -757,6 +764,7 @@ tab_title_template "{index}:{title}"
 #: Background color for the tab bar. Defaults to using the terminal
 #: background color.
 
+: }}}
 
 #: Color scheme {{{
 
@@ -903,6 +911,7 @@ tab_title_template "{index}:{title}"
 
 #: }}}
 
+:{{{
 
 # shell .
 
@@ -934,7 +943,7 @@ tab_title_template "{index}:{title}"
 #: to yes means that any background processes still using the terminal
 #: can fail silently because their stdout/stderr/stdin no longer work.
 
-allow_remote_control yes
+# allow_remote_control no
 
 #: Allow other programs to control kitty. If you turn this on other
 #: programs can control all aspects of kitty, including sending text
@@ -982,7 +991,7 @@ allow_remote_control yes
 #: to disable. Changing this option by reloading the config is not
 #: supported.
 
-startup_session $HOME/.local/kitty/session
+ startup_session $HOME/.local/kitty/session
 
 #: Path to a session file to use for all kitty instances. Can be
 #: overridden by using the kitty --session command line option for
@@ -1031,7 +1040,9 @@ startup_session $HOME/.local/kitty/session
 #: work. Changing this option by reloading the config will only affect
 #: newly created windows.
 
-#: OS specific tweaks {{{
+}}}
+
+: OS specific tweaks {{{
 
 # wayland_titlebar_color system
 
@@ -1116,8 +1127,9 @@ startup_session $HOME/.local/kitty/session
 #: to x11 or wayland to force the choice. Changing this setting by
 #: reloading the config is not supported.
 
+: }}}
 
-#: Keyboard shortcuts {{{
+: Keyboard shortcuts {{{
 
 #: Keys are identified simply by their lowercase unicode characters.
 #: For example: ``a`` for the A key, ``[`` for the left square bracket
@@ -1198,7 +1210,7 @@ startup_session $HOME/.local/kitty/session
 #: kitty +kitten hints --hints-offset to zero for all mappings,
 #: including the builtin ones.
 
-map f1 launch --allow-remote-control kitty +kitten broadcast --match-tab state:focused
+#: map F1 launch --allow-remote-control kitty +kitten broadcast
 
 #: Clipboard {{{
 
@@ -1510,9 +1522,10 @@ map f1 launch --allow-remote-control kitty +kitten broadcast --match-tab state:f
 
 #: }}}
 
+: }}}
 
 
 # BEGIN_KITTY_THEME
-# 1984 Dark
+# Default
 include current-theme.conf
 # END_KITTY_THEME
