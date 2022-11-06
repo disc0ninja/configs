@@ -35,6 +35,3 @@ vim.api.nvim_set_keymap('n', '<Leader>nn', ':NvimTreeToggle<CR>', { noremap = tr
 vim.api.nvim_set_keymap('n', '<Leader>bn', ':bn<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>bb', ':bp<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>bd', ':bd%<CR>', { noremap = true, silent = true })
-
--- place nvim in background
-vim.api.nvim_set_keymap('n', '<Leader>bg', '<C-z>', { noremap = true, silent = true })
