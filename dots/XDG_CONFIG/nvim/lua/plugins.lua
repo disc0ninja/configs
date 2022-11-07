@@ -20,8 +20,13 @@ require('packer').startup(function(use)
   use 'nvim-treesitter/nvim-treesitter'
 
 	-- LSP
-	use 'williamboman/nvim-lsp-installer'
-	use 'neovim/nvim-lspconfig'
+	use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
+  use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
+  use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+  use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
+  use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
+  use 'L3MON4D3/LuaSnip' -- Snippets plugin
 
   -- Visual - Themes/Colorschemes
   use 'phha/zenburn.nvim'
