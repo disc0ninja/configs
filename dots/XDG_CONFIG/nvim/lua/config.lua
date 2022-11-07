@@ -86,7 +86,7 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -108,58 +108,39 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
-local lsp_flags = {
-  -- This is the default in Nvim 0.7+
-  debounce_text_changes = 150,
+require('mason').setup{}
+require('mason-lspconfig').setup({
+  ensure_installed = { 'yamlls', 'terraformls', 'marksman', 'jsonls', 'ansiblels', 'bashls', 'pyright', 'gopls', },
+  automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
+  ui = {
+    icons = {
+      server_installed = '✓',
+      server_pending = '➜',
+      server_uninstalled = '✗'
+    }
+  }
+})
+
+require("mason-lspconfig").setup_handlers {
+    -- The first entry (without a key) will be the default handler
+    -- and will be called for each installed server that doesn't have
+    -- a dedicated handler.
+    function (server_name) -- default handler (optional)
+      require("lspconfig")[server_name].setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+      }
+    end,
+    -- Next, you can provide a dedicated handler for specific servers.
+    -- For example, a handler override for the `rust_analyzer`:
+    -- ["rust_analyzer"] = function ()
+    --   require("rust-tools").setup {}
+    -- end
 }
 
-require('lspconfig')['bashls'].setup{
-  on_attach = on_attach,
-  flags = lsp_flags,
-}
-require('lspconfig')['pyright'].setup{
-  on_attach = on_attach,
-  flags = lsp_flags,
-}
-require('lspconfig')['gopls'].setup{
-on_attach = on_attach,
-flags = lsp_flags,
-}
-require('lspconfig')['yamlls'].setup{
-  on_attach = on_attach,
-  flags = lsp_flags,
-}
-require('lspconfig')['terraformls'].setup{
-  on_attach = on_attach,
-  flags = lsp_flags,
-  filetypes = { 'terraform', 'tf', 'tfvars' }
-}
-require('lspconfig')['html'].setup{
-  on_attach = on_attach,
-  flags = lsp_flags,
-}
-require('lspconfig')['marksman'].setup{
-  on_attach = on_attach,
-  flags = lsp_flags,
-  filetypes = { 'md', 'markdown' }
-}
-require('lspconfig')['jsonls'].setup{
-  on_attach = on_attach,
-  flags = lsp_flags,
-  filetypes = { 'md', 'markdown' }
-}
-require('lspconfig')['rust_analyzer'].setup{
-  on_attach = on_attach,
-  flags = lsp_flags,
-}
-require('lspconfig')['ansiblels'].setup{
-  on_attach = on_attach,
-  flags = lsp_flags,
-  filetypes = { 'yaml', 'yml' }
-}
 require('lspconfig')['sumneko_lua'].setup {
   on_attach = on_attach,
-  flags = lsp_flags,
+  capabilities = capabilities,
   settings = {
     Lua = {
       runtime = {
@@ -181,18 +162,6 @@ require('lspconfig')['sumneko_lua'].setup {
     },
   },
 }
-
-require('mason').setup{}
-require('mason-lspconfig').setup({
-  automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
-  ui = {
-    icons = {
-      server_installed = '✓',
-      server_pending = '➜',
-      server_uninstalled = '✗'
-    }
-  }
-})
 
 -- auto pairs
 local npairs = require('nvim-autopairs')
