@@ -16,64 +16,44 @@ local packer_bootstrap = ensure_packer()
 
 -- Plugins
 require('packer').startup(function(use)
-	use 'wbthomason/packer.nvim' -- call packer itself first so it doesn't try to delete itself
-  use 'nvim-treesitter/nvim-treesitter'
-
+	use { 'wbthomason/packer.nvim' } -- call packer itself first so it doesn't try to delete itself
+  use { 'nvim-treesitter/nvim-treesitter' } -- Treesitter
 	-- LSP
-	use 'williamboman/mason.nvim'
-  use 'williamboman/mason-lspconfig.nvim'
-  use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
-  use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
-  use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-  use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
-  use 'L3MON4D3/LuaSnip' -- Snippets plugin
-
-  -- Visual - Themes/Colorschemes
-  use 'phha/zenburn.nvim'
-  use 'luisiacc/gruvbox-baby'
-  use 'savq/melange'
-  use 'patstockwell/vim-monokai-tasty'
-  use 'jacoborus/tender.vim'
-  use 'navarasu/onedark.nvim'
-  use 'JoosepAlviste/palenightfall.nvim'
-
-  -- auto-pairing
-  use {
-    "windwp/nvim-autopairs",
-      config = function() require("nvim-autopairs").setup {
-      map_cr = true
-    } end,
+  use { 'VonHeikemen/lsp-zero.nvim',
+    requires = {
+      -- LSP Support
+      {'neovim/nvim-lspconfig'},
+      {'williamboman/mason.nvim'},
+      {'williamboman/mason-lspconfig.nvim'},
+      -- Autocompletion
+      {'hrsh7th/nvim-cmp'},
+      {'hrsh7th/cmp-buffer'},
+      {'hrsh7th/cmp-path'},
+      {'saadparwaiz1/cmp_luasnip'},
+      {'hrsh7th/cmp-nvim-lsp'},
+      {'hrsh7th/cmp-nvim-lua'},
+      -- Snippets
+      {'L3MON4D3/LuaSnip'},
+      {'rafamadriz/friendly-snippets'},
+    }
   }
-
-  -- nvim-tree
-  use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' } }
-
-  -- telescope
-  use { 'nvim-telescope/telescope.nvim', tag = '0.1.x', requires = { {'nvim-lua/plenary.nvim'} } }
-
-  -- lualine
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
-  }
-
-  -- bufferline
-  use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'nvim-tree/nvim-web-devicons'}
-
-  -- indent-line
-  use 'lukas-reineke/indent-blankline.nvim'
-  
-  -- peek markdown previewer
-  use { 'toppair/peek.nvim', run = 'deno task --quiet build:fast' }
-
-  -- git signs
-  use {
-    'lewis6991/gitsigns.nvim',
-    tag = 'v0.5'
-  }
-
-  -- kitty config syntax
-  use { 'fladson/vim-kitty' }
+	-- use { 'williamboman/mason.nvim' }
+  -- use { 'williamboman/mason-lspconfig.nvim' }
+  -- use { 'neovim/nvim-lspconfig' } -- Collection of configurations for built-in LSP client
+  -- use { 'hrsh7th/nvim-cmp' } -- Autocompletion plugin
+  -- use { 'hrsh7th/cmp-nvim-lsp' } -- LSP source for nvim-cmp
+  -- use { 'saadparwaiz1/cmp_luasnip' } -- Snippets source for nvim-cmp
+  -- use { 'L3MON4D3/LuaSnip' } -- Snippets plugin
+  use { 'JoosepAlviste/palenightfall.nvim'} -- Theme
+  use { "windwp/nvim-autopairs", config = function() require("nvim-autopairs").setup { map_cr = true } end, } -- autopairs
+  use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' } } --nvim-tree
+  use { 'nvim-telescope/telescope.nvim', tag = '0.1.x', requires = { {'nvim-lua/plenary.nvim'} } } --telescope
+  use { 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } } -- lualine
+  use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'nvim-tree/nvim-web-devicons'} --bufferline
+  use { 'lukas-reineke/indent-blankline.nvim' } -- indent line
+  use { 'toppair/peek.nvim', run = 'deno task --quiet build:fast' } -- markdown previewer
+  use { 'lewis6991/gitsigns.nvim', tag = 'v0.5' } -- git signs
+  use { 'fladson/vim-kitty' } -- kitty config syntax
 
 	if packer_bootstrap then
 		require('packer').sync()
