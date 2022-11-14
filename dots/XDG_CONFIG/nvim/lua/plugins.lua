@@ -37,13 +37,6 @@ require('packer').startup(function(use)
       {'rafamadriz/friendly-snippets'},
     }
   }
-	-- use { 'williamboman/mason.nvim' }
-  -- use { 'williamboman/mason-lspconfig.nvim' }
-  -- use { 'neovim/nvim-lspconfig' } -- Collection of configurations for built-in LSP client
-  -- use { 'hrsh7th/nvim-cmp' } -- Autocompletion plugin
-  -- use { 'hrsh7th/cmp-nvim-lsp' } -- LSP source for nvim-cmp
-  -- use { 'saadparwaiz1/cmp_luasnip' } -- Snippets source for nvim-cmp
-  -- use { 'L3MON4D3/LuaSnip' } -- Snippets plugin
   use { 'JoosepAlviste/palenightfall.nvim'} -- Theme
   use { "windwp/nvim-autopairs", config = function() require("nvim-autopairs").setup { map_cr = true } end, } -- autopairs
   use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' } } --nvim-tree
@@ -54,6 +47,7 @@ require('packer').startup(function(use)
   use { 'toppair/peek.nvim', run = 'deno task --quiet build:fast' } -- markdown previewer
   use { 'lewis6991/gitsigns.nvim', tag = 'v0.5' } -- git signs
   use { 'fladson/vim-kitty' } -- kitty config syntax
+  use { 'NvChad/nvim-colorizer.lua' } -- displays hex/rgb etc in thier colors
 
 	if packer_bootstrap then
 		require('packer').sync()
