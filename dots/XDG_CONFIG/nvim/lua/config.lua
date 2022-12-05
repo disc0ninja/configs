@@ -12,6 +12,22 @@ vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 vim.opt.tabstop = 2
 
+-- LSP Do this early! or auto attach won't work
+local lsp = require('lsp-zero')
+lsp.preset('recommended')
+lsp.ensure_installed({
+  'ansiblels',
+  'bashls',
+  'gopls',
+  'marksman',
+  'pyright',
+  'sumneko_lua',
+  'terraformls',
+  'yamlls',
+})
+lsp.nvim_workspace()
+lsp.setup()
+
 -- Treesitter
 local configs = require'nvim-treesitter.configs'
 configs.setup {
@@ -141,23 +157,3 @@ vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.foldlevel = 1
 
--- -- LSP
-local lsp = require('lsp-zero')
-
-lsp.preset('recommended')
-
-lsp.ensure_installed({
-  'pyright',
-  'gopls',
-  'sumneko_lua',
-  'ansiblels',
-  'yamlls',
-  'bashls',
-})
-
-lsp.configure('ansiblels', {
-  filetypes = { 'yaml', 'yml' }
-})
-
-lsp.nvim_workspace()
-lsp.setup()
