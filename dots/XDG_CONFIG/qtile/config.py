@@ -101,19 +101,25 @@ for i in groups:
     )
 
 layouts = [
-        layout.Columns(border_focus_stack=["#558817", "#559999"], border_width=4),
-    layout.Max(),
+    layout.Columns(
+        border_normal="#559999",
+        border_focus="#558817",
+        border_focus_stack="#779999",
+        border_normal_stack="#778888",
+        border_width=1
+    ),
     # Try more layouts by unleashing below layouts.
-    # layout.Stack(num_stacks=2),
-    # layout.Bsp(),
-    # layout.Matrix(),
-    # layout.MonadTall(),
-    # layout.MonadWide(),
-    # layout.RatioTile(),
-    # layout.Tile(),
-    # layout.TreeTab(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
+    #layout.Stack(num_stacks=2),
+     #layout.Bsp(),
+    layout.Matrix(),
+     # layout.MonadTall(),
+     #layout.MonadWide(),
+     #layout.RatioTile(),
+     #layout.Tile(),
+    layout.TreeTab(),
+     # layout.VerticalTile(),
+     #layout.Zoomy(),
+    layout.Max(),
 ]
 
 widget_defaults = dict(
@@ -149,7 +155,7 @@ screens = [
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
                 #widget.QuickExit(),
             ],
-            24,
+            36,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
