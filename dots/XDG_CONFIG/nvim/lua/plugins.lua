@@ -17,7 +17,8 @@ local packer_bootstrap = ensure_packer()
 -- Plugins
 require('packer').startup(function(use)
 	use { 'wbthomason/packer.nvim' } -- call packer itself first so it doesn't try to delete itself
-  use { 'nvim-treesitter/nvim-treesitter' } -- Treesitter
+  -- use {'williamboman/nvim-lsp-installer'}
+
 	-- LSP
   use { 'VonHeikemen/lsp-zero.nvim',
     requires = {
@@ -37,6 +38,7 @@ require('packer').startup(function(use)
       {'rafamadriz/friendly-snippets'},
     }
   }
+  use { 'nvim-treesitter/nvim-treesitter' } -- Treesitter
   use { 'JoosepAlviste/palenightfall.nvim'} -- Theme
   use { "windwp/nvim-autopairs", config = function() require("nvim-autopairs").setup { map_cr = true } end, } -- autopairs
   use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' } } --nvim-tree

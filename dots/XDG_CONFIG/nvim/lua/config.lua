@@ -12,6 +12,22 @@ vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 vim.opt.tabstop = 2
 
+-- LSP Do this early! or auto attach won't work
+local lsp = require('lsp-zero')
+lsp.preset('recommended')
+lsp.ensure_installed({
+  'ansiblels',
+  'bashls',
+  'gopls',
+  'marksman',
+  'pyright',
+  'sumneko_lua',
+  'terraformls',
+  'yamlls',
+})
+lsp.nvim_workspace()
+lsp.setup()
+
 -- Treesitter
 local configs = require'nvim-treesitter.configs'
 configs.setup {
@@ -141,47 +157,29 @@ vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.foldlevel = 1
 
--- -- LSP
-local lsp = require('lsp-zero')
+-- colorizer
 
-lsp.preset('recommended')
-
-lsp.ensure_installed({
-  'pyright',
-  'gopls',
-  'sumneko_lua',
-  'ansiblels',
-  'yamlls',
-  'bashls',
-})
-
-lsp.configure('ansiblels', {
-  filetypes = { 'yaml', 'yml' }
-})
-
-lsp.nvim_workspace()
-lsp.setup()
-  require("colorizer").setup {
-      filetypes = { "*" },
-      user_default_options = {
-        RGB = true, -- #RGB hex codes
-        RRGGBB = true, -- #RRGGBB hex codes
-        names = true, -- "Name" codes like Blue or blue
-        RRGGBBAA = false, -- #RRGGBBAA hex codes
-        AARRGGBB = false, -- 0xAARRGGBB hex codes
-        rgb_fn = false, -- CSS rgb() and rgba() functions
-        hsl_fn = false, -- CSS hsl() and hsla() functions
-        css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-        css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-        -- Available modes for `mode`: foreground, background,  virtualtext
-        mode = "background", -- Set the display mode.
-        -- Available methods are false / true / "normal" / "lsp" / "both"
-        -- True is same as normal
-        tailwind = false, -- Enable tailwind colors
-        -- parsers can contain values used in |user_default_options|
-        sass = { enable = false, parsers = { css }, }, -- Enable sass colors
-        virtualtext = "■",
-      },
-      -- all the sub-options of filetypes apply to buftypes
-      buftypes = {},
-  }
+require("colorizer").setup {
+    filetypes = { "*" },
+    user_default_options = {
+      RGB = true, -- #RGB hex codes
+      RRGGBB = true, -- #RRGGBB hex codes
+      names = true, -- "Name" codes like Blue or blue
+      RRGGBBAA = false, -- #RRGGBBAA hex codes
+      AARRGGBB = false, -- 0xAARRGGBB hex codes
+      rgb_fn = false, -- CSS rgb() and rgba() functions
+      hsl_fn = false, -- CSS hsl() and hsla() functions
+      css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+      css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+      -- Available modes for `mode`: foreground, background,  virtualtext
+      mode = "background", -- Set the display mode.
+      -- Available methods are false / true / "normal" / "lsp" / "both"
+      -- True is same as normal
+      tailwind = false, -- Enable tailwind colors
+      -- parsers can contain values used in |user_default_options|
+      sass = { enable = false, parsers = { css }, }, -- Enable sass colors
+      virtualtext = "■",
+    },
+    -- all the sub-options of filetypes apply to buftypes
+    buftypes = {},
+}
