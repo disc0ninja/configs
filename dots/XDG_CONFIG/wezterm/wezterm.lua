@@ -52,7 +52,7 @@ return {
   --------------------------------------------------
   -- Key Maps
   --------------------------------------------------
-  leader = { key = 'a', mods = 'ALT', timeout_milliseconds = 1500 },
+  leader = { key = 'Alt', timeout_milliseconds = 1500 },
   keys = {
     --------------------------------------------------
     -- Window/Pane Management

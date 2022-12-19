@@ -1,10 +1,26 @@
 -- config.lua
+vim.opt.scrolloff = 8
+
+--{ "CursorMoved", "*", ':exec "norm zz"' }
+vim.api.nvim_create_autocmd(
+  {"CursorMoved"},
+  {pattern = {"*"}, command = ':exec "norm zz"'}
+)
+
+vim.api.nvim_create_autocmd(
+    { "BufRead", "BufNewFile" },
+    { pattern = { "*.txt", "*.md", "*.tex" }, command = "setlocal spell" }
+)
+
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
 
 -- Files
 vim.opt.encoding = 'utf-8'
 vim.opt.autoindent = true
 vim.cmd([[syntax on]])
 vim.cmd([[set number]])
+vim.cmd([[set relativenumber]])
 
 -- Tabs
 vim.opt.expandtab = true -- converts tabs to spaces
@@ -155,10 +171,9 @@ require('gitsigns').setup()
 -- Code folding
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.opt.foldlevel = 1
+vim.opt.foldlevel = 6
 
 -- colorizer
-
 require("colorizer").setup {
     filetypes = { "*" },
     user_default_options = {
