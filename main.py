@@ -18,7 +18,7 @@ class Dot:
         self.src = src
         self.dst = dst
         self.linux = linux
-        self.linux = macos
+        self.macos = macos
         self.isDir = os.path.isdir(src)
 
     def backup(self):
@@ -53,48 +53,91 @@ class Dot:
             except Exception as e:
                 log.error(f'Exception copying {self.src} to {self.dst}. {e}')
 
-    def install(self):
-        if exists(self.dst):
-            log.info(f'{self.dst} exists. Comparing with {self.src}')
-            same = self.compare_existing()
-            if not same:
-                self.backup()
-                self.copy_files()
-            else:
-                log.info(f'Skipping. {self.src} matches {self.dst}')
+    def check_os_compat(self):
+        OS = os.uname().sysname
+        log.debug(OS)
+        if ('Linux' in OS and self.linux) or ('Macos' in OS and self.macos):
+            log.debug(f'OS {OS} is compatible')
+            return True
         else:
-            log.info(f'{self.dst} is empty.')
-            self.copy_files()
+            log.debug(f'OS {OS} is NOT compatible')
+            return False
+
+    def install(self):
+        if self.check_os_compat():
+            if exists(self.dst):
+                log.info(f'{self.dst} exists. Comparing with {self.src}')
+                same = self.compare_existing()
+                if not same:
+                    self.backup()
+                    self.copy_files()
+                else:
+                    log.info(f'Skipping. {self.src} matches {self.dst}')
+            else:
+                log.info(f'{self.dst} is empty.')
+                self.copy_files()
 
 
 def main():
     HOME = str(os.environ.get('HOME'))
     XDG_CONFIG = str(os.environ.get('XDG_CONFIG', HOME + '/.config'))
     log.debug(f'HOME: {HOME}. XDG_CONFIG: {XDG_CONFIG}')
+
+    alacritty = Dot(
+        src='./dots/_alacritty.yml',
+        dst=HOME + '/.alacritty.yml',
+    )
+
+    bash_profile = Dot(
+        src='./dots/_bash_profile',
+        dst=HOME + '/.bash_profile',
+    )
+
     bashrc = Dot(
         src='./dots/_bashrc',
         dst=HOME + '/.bashrc',
-        linux=True,
-        macos=True
+    )
+
+    tmux = Dot(
+        src='./dots/_tmux.conf',
+        dst=HOME + '/.tmux.conf',
     )
 
     zshrc = Dot(
         src='./dots/_zshrc',
         dst=HOME + '/.zshrc',
-        linux=True,
-        macos=True
+    )
+
+    kitty = Dot(
+        src='./dots/XDG_CONFIG/kitty',
+        dst=XDG_CONFIG + '/kitty',
+    )
+
+    nvim = Dot(
+        src='./dots/XDG_CONFIG/nvim',
+        dst=XDG_CONFIG + '/nvim',
     )
 
     qtile = Dot(
         src='./dots/XDG_CONFIG/qtile',
         dst=XDG_CONFIG + '/qtile',
-        linux=True,
         macos=False
     )
 
+    wezterm = Dot(
+        src='./dots/XDG_CONFIG/wezterm',
+        dst=XDG_CONFIG + '/wezterm',
+    )
+
+    alacritty.install()
+    bash_profile.install()
     bashrc.install()
+    tmux.install()
     zshrc.install()
+    kitty.install()
+    nvim.install()
     qtile.install()
+    wezterm.install()
 
 
 if __name__ == "__main__":
