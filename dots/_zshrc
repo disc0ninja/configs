@@ -1,0 +1,87 @@
+export ZSH="$HOME/.oh-my-zsh"
+
+ZSH_THEME="robbyrussell"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
+
+##################################################
+#   MacOS Only   #################################
+##################################################
+if [[ "$OSTYPE" =~ "darwin" ]]; then
+# Aliases (Macos)   ###########################
+  alias fly='fly -t main'
+  # GPG
+  export GPG_TTY=$(tty)
+  #gpg-agent --daemon
+  eval $(gpg-connect-agent --quiet /bye)
+  ssh-add -q --apple-load-keychain --apple-use-keychain ~/.ssh/id_rsa
+  export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+  export JIRA_AUTH_TYPE='bearer'
+  export PATH="$HOME/.nvm/versions/node/v16.17.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/opt/coreutils/libexec/gnubin/:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.local/bin:/Users/tpankan/Library/Python/3.10/bin"
+else
+##################################################
+#   Linux Only   #################################
+##################################################
+# Aliases (Linux)   ############################
+  alias diff="diff --color=auto"
+  alias grep="grep --color=auto"
+  alias ip="ip --color=auto"
+fi
+##################################################
+#   Common Options ###############################
+##################################################
+# Functions (Common)   #########################
+# zet() is a function to quickly open a new markdown file with $EDITOR 
+# with a globally uniquie name (isosec) to store digital notes. 
+zet() {
+  new_zet_path="$zet_repo/$(isosec)"
+  mkdir "$new_zet_path"
+  vi "${new_zet_path}/README.md"
+}
+
+# zet search function
+# aggregates results into a temp file and pipes to less
+zet_search() {
+  cd "$zet_repo"
+  git grep -l $@ |xargs -I%  cat % >> /tmp/zet_search.txt;
+  less /tmp/zet_search.txt
+  rm /tmp/zet_search.txt
+  cd - 2>&1 >/dev/null
+}
+
+#   Aliases (Common)   ###########################
+alias k='kubectl'
+alias isosec="date -u +%Y%m%d%H%M%S"
+#alias tmux="TERM=screen-256color-bce tmux"
+alias z="zet"
+alias zs="zet_search -i"
+alias ls="ls --color=auto"
+alias ll="ls -l"
+alias vi=nvim
+alias vim=nvim
+#   variables (Common)   #########################
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
+export PROMPT_DIRTRIM="2"
+export zet_repo="$HOME/zet"
+export EDITOR="$(which nvim)"
+export VISUAL="$(which nvim)"
+export HISTSIZE=100000
+export DENO_INSTALL="$HOME/.deno"
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+#   $PATH   ########################################## 
+export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin/:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.local/bin:$DENO_INSTALL/bin"
+
+set -o vi
+bindkey "^R" history-incremental-search-backward
