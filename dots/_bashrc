@@ -81,7 +81,7 @@ export VISUAL="$(which nvim)"
 zet() {
   new_zet_path="$zet_repo/$(isosec)"
   mkdir "$new_zet_path"
-  vi "${new_zet_path}/README.md"
+  nvim "${new_zet_path}/README.md"
 }
 
 # zet search function

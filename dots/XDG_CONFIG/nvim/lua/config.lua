@@ -1,7 +1,9 @@
 -- config.lua
-vim.opt.scrolloff = 8
+-- disabling netrw early since using nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
---{ "CursorMoved", "*", ':exec "norm zz"' }
+-- This keeps the cursor centered on long files
 vim.api.nvim_create_autocmd(
   {"CursorMoved"},
   {pattern = {"*"}, command = ':exec "norm zz"'}
@@ -70,6 +72,11 @@ npairs.setup({
 
 -- nvim-tree
 require('nvim-tree').setup({
+  open_on_setup = true,
+  ignore_buffer_on_setup = true,
+  ignore_ft_on_setup = {
+    "gitcommit",
+  },
   sort_by = 'case_sensitive',
   view = {
     adaptive_size = true,
@@ -134,7 +141,17 @@ require('bufferline').setup{
     numbers = 'buffer_id',
     diagnostics = true,
     separator_style = 'thin',
-  }
+    offsets = {
+      {
+        filetype = "NvimTree",
+        text = function ()
+          return vim.fn.getcwd()
+        end,
+        highlight = "Directory",
+        text_align = "left"
+      }
+    }
+  },
 }
 
 -- indent-line

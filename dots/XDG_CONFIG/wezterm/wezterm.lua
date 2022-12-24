@@ -26,6 +26,7 @@ return {
     saturation = 0.7,
     brightness = 0.7,
   },
+  font_size = 16.0,
   use_fancy_tab_bar = false,
   tab_bar_at_bottom = false,
   hide_tab_bar_if_only_one_tab = false,
@@ -57,8 +58,8 @@ return {
     --------------------------------------------------
     -- Window/Pane Management
     --------------------------------------------------
-    { key = ';', mods = 'LEADER', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
-    { key = "'", mods = 'LEADER', action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
+    { key = ';', mods = 'ALT', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+    { key = "'", mods = 'ALT', action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
     { key = 'h', mods = 'ALT', action = act.ActivatePaneDirection 'Left' },
     { key = 'j', mods = 'ALT', action = act.ActivatePaneDirection 'Down' },
     { key = 'k', mods = 'ALT', action = act.ActivatePaneDirection 'Up' },
