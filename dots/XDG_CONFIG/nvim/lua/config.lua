@@ -1,9 +1,7 @@
 -- config.lua
--- disabling netrw early since using nvim-tree
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+vim.opt.scrolloff = 8
 
--- This keeps the cursor centered on long files
+--{ "CursorMoved", "*", ':exec "norm zz"' }
 vim.api.nvim_create_autocmd(
   {"CursorMoved"},
   {pattern = {"*"}, command = ':exec "norm zz"'}
@@ -71,15 +69,43 @@ npairs.setup({
 })
 
 -- nvim-tree
+-- autocmd BufEnter * silent! lcd %:p:h
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = '*',
+  command = 'silent! lcd %:p:h'
+})
+local width = 60
+local height = 30
 require('nvim-tree').setup({
-  open_on_setup = true,
-  ignore_buffer_on_setup = true,
-  ignore_ft_on_setup = {
-    "gitcommit",
+    update_focused_file = {
+      enable = true,
+      update_root = true,
+      ignore_list = {}
+    },
+  actions = {
+    change_dir = {
+      enable = true,
+      global = true
+    }
   },
   sort_by = 'case_sensitive',
+  open_on_setup = true,
+  respect_buf_cwd = true,
   view = {
-    adaptive_size = true,
+    float = {
+      enable = true,
+      quit_on_focus_loss = true,
+      open_win_config = {
+        width = width,
+        height = height,
+        col = vim.api.nvim_win_get_width(0) / 2 - width / 2,
+        row = vim.api.nvim_win_get_height(0) / 2 - height / 2,
+      }
+    },
+    adaptive_size = false,
+    centralize_selection = true,
+    number = true,
+    relativenumber = true,
     mappings = {
       list = {
         { key = 'u', action = 'dir_up' },
@@ -141,17 +167,7 @@ require('bufferline').setup{
     numbers = 'buffer_id',
     diagnostics = true,
     separator_style = 'thin',
-    offsets = {
-      {
-        filetype = "NvimTree",
-        text = function ()
-          return vim.fn.getcwd()
-        end,
-        highlight = "Directory",
-        text_align = "left"
-      }
-    }
-  },
+  }
 }
 
 -- indent-line
