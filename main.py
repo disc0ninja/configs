@@ -134,10 +134,10 @@ def main():
     bashrc.install()
     tmux.install()
     zshrc.install()
-    kitty.install()
+#    kitty.install()
     nvim.install()
-    qtile.install()
-    wezterm.install()
+#    qtile.install()
+#    wezterm.install()
 
 
 if __name__ == "__main__":
