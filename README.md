@@ -30,6 +30,7 @@ More info on the endeavoros qtile CE: <https://discovery.endeavouros.com/window-
     ```
     python3 -m venv .env
     source .env/bin/activate
+    pip intall --upgrade pip
     pip install -r requirements.txt
     ```
 4. (optional) install asdf, and use it to install the tools that

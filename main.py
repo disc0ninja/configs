@@ -31,8 +31,11 @@ class Dot:
 
     def compare_existing(self):
         if self.isDir:
+            log.debug(f'{self.src} is a directory')
             same = filecmp.dircmp(self.src, self.dst)
+            log.debug(f'CMP: {same.report()}')
         else:
+            log.debug(f'{self.src} is a file')
             same = filecmp.cmp(self.src, self.dst)
         if same:
             log.info(f'{self.src} and {self.dst} match')
@@ -136,7 +139,7 @@ def main():
     zshrc.install()
 #    kitty.install()
     nvim.install()
-#    qtile.install()
+    qtile.install()
 #    wezterm.install()
 
 
