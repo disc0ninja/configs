@@ -138,8 +138,8 @@ def main():
     tmux.install()
     zshrc.install()
 #    kitty.install()
-    nvim.install()
-    qtile.install()
+#    nvim.install()
+#    qtile.install()
 #    wezterm.install()
 
 
