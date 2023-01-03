@@ -12,16 +12,6 @@ preferred workflow tooling.
 - Neovim
 - tmux
 
-## Qtile WM setup dependencies (These are only required if you're intending to use qtile)
-Current qtile setup is based off of the default qtile that comes with the Endeavouros qtile CE and as such to start with most of the dependencies relating to that OS install are listed here for now.
-
-More info on the endeavoros qtile CE: <https://discovery.endeavouros.com/window-tiling-managers/qtile/2022/01/>
-- Rofi
-- picom
-- dunst
-- feh
-- pcmanfm-gtk3?
-
 
 ## To setup a new env with these configs
 1. Install the dependencies
@@ -33,7 +23,7 @@ More info on the endeavoros qtile CE: <https://discovery.endeavouros.com/window-
     pip intall --upgrade pip
     pip install -r requirements.txt
     ```
-4. (optional) install asdf, and use it to install the tools that
+4. Run the python install script to setup the various dots `python3 main.py`
+5. (optional) install asdf, and use it to install the tools that
 mason and neovim need for LSP configuration and setup. `./asdf_setup.sh`
-5. Run the python install script to setup the various dots `python3 main.py`
 6. Exit the virtual environment `deactivate`

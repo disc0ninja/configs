@@ -111,36 +111,11 @@ def main():
         dst=HOME + '/.zshrc',
     )
 
-    kitty = Dot(
-        src='./dots/XDG_CONFIG/kitty',
-        dst=XDG_CONFIG + '/kitty',
-    )
-
-    nvim = Dot(
-        src='./dots/XDG_CONFIG/nvim',
-        dst=XDG_CONFIG + '/nvim',
-    )
-
-    qtile = Dot(
-        src='./dots/XDG_CONFIG/qtile',
-        dst=XDG_CONFIG + '/qtile',
-        macos=False
-    )
-
-    wezterm = Dot(
-        src='./dots/XDG_CONFIG/wezterm',
-        dst=XDG_CONFIG + '/wezterm',
-    )
-
     alacritty.install()
     bash_profile.install()
     bashrc.install()
     tmux.install()
     zshrc.install()
-#    kitty.install()
-#    nvim.install()
-#    qtile.install()
-#    wezterm.install()
 
 
 if __name__ == "__main__":

@@ -26,4 +26,3 @@ install_program(){
 
 install_program nodejs lts
 install_program golang 1.19.4
-install_program deno 1.29.1
