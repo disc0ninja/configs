@@ -54,6 +54,7 @@ if [[ "$OSTYPE" =~ "darwin" ]]; then
   ssh-add -q --apple-load-keychain
   export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
   export JIRA_AUTH_TYPE='bearer'
+  export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin"
 else
 ##################################################
 #   Linux Only   #################################
