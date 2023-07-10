@@ -1,9 +1,11 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
 local mux = wezterm.mux
+local font_size = 10.0
 
--- Open fullscreen on macos
+-- MacOs overrides
 if wezterm.target_triple == 'x86_64-apple-darwin' then
+  font_size = 14.0
   wezterm.on("gui-startup", function()
     local tab, pane, window = mux.spawn_window {}
     window:gui_window():maximize()
@@ -23,7 +25,7 @@ return {
     saturation = 0.7,
     brightness = 0.7,
   },
-  font_size = 10.0,
+  font_size = font_size,
   use_fancy_tab_bar = false,
   tab_bar_at_bottom = false,
   hide_tab_bar_if_only_one_tab = true,
@@ -44,7 +46,7 @@ return {
   --------------------------------------------------
   -- get rid of annoying error about missing glyphs
   warn_about_missing_glyphs = false,
-  scrollback_lines = 100000,
+  scrollback_lines = 10000,
   enable_scroll_bar = true,
   --------------------------------------------------
   -- Key Maps
