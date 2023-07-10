@@ -1,9 +1,3 @@
+*.log
 *.swp
 */*swp
-__pycache__
-__pycahce__/*
-dots/XDG_CONFIG/nvim/plugin
-dots/XDG_CONFIG/nvim/plugin/*
-dots/XDG_CONFIG/*/__pycahce__
-dots/XDG_CONFIG/*/__pycahce__/*
-.env

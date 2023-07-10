@@ -1,0 +1,96 @@
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=10000
+bindkey -v
+bindkey "^R" history-incremental-search-backward
+bindkey -a -r ':'
+autoload -Uz compinit
+compinit
+
+##################################################
+# Git stuff with vcs_info
+##################################################
+autoload  -Uz vcs_info
+
+# Enable checking for (un)staged changes, enabling use of %u and %c
+zstyle ':vcs_info:*' check-for-changes true
+# Set custom strings for an unstaged vcs repo changes (*) and staged changes (+)
+zstyle ':vcs_info:*' unstagedstr ' *'
+zstyle ':vcs_info:*' stagedstr ' +'
+zstyle ':vcs_info:*' untrackedstr ' ?'
+# Set the format of the Git information for vcs_info
+zstyle ':vcs_info:git:*' formats       '(%b%u%c%m)'
+zstyle ':vcs_info:git:*' actionformats '(%b|%a%u%c%m)'
+
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+
++vi-git-untracked() {
+  if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+     git status --porcelain | grep -m 1 '^??' &>/dev/null
+  then
+    hook_com[misc]=' ?'
+  fi
+}
+
+precmd() {
+  vcs_info
+  if [[ -z ${vcs_info_msg_0_} ]]; then
+    PS1="%2~ %# "
+  else
+    PS1="%2~ %F{magenta}$vcs_info_msg_0_%f %# "
+  fi
+}
+
+##################################################
+#   MacOS Only   #################################
+##################################################
+if [[ "$OSTYPE" =~ "darwin" ]]; then
+# Aliases (Macos)   ###########################
+  alias fly='fly -t main'
+  # GPG
+  export GPG_TTY=$(tty)
+  #gpg-agent --daemon
+  #eval $(gpg-connect-agent --quiet /bye)
+  ssh-add -q --apple-load-keychain
+  export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+  export JIRA_AUTH_TYPE='bearer'
+else
+##################################################
+#   Linux Only   #################################
+##################################################
+# Aliases (Linux)   ############################
+  alias diff="diff --color=auto"
+  alias grep="grep --color=auto"
+  alias ip="ip --color=auto"
+fi
+##################################################
+#   Common Options ###############################
+##################################################
+#   variables (Common)   #########################
+[[ -n $SSH_CONNECTION ]]&& export EDITOR=vim || export EDITOR=nvim
+export VISUAL=nvim
+export DENO_INSTAL="$HOME/.deno"
+
+#   Aliases (Common)   ###########################
+alias g=git
+alias ga='git add'
+alias gA='git add .'
+alias gb='git branch'
+alias gbd='git branch -D'
+alias gc="git commit"
+alias gcm="git commit -m"
+alias gC="git checkout"
+alias gd='git diff'
+alias gp='git pull'
+alias gp="git pull"
+alias gP="git push"
+alias gs="git status -bs"
+alias ll="ls -l"
+alias ls="ls --color=auto"
+alias k='kubectl'
+alias kg='kubectl get'
+alias vi="nvim"
+#alias tmux="TERM=screen-256color-bce tmux"
+
+#   $PATH   ########################################## 
+export PATH="$PATH:/bin:/usr/bin:/usr/bin/go/bin:/usr/local/bin:/usr/local/go/bin:/sbin:/usr/sbin:/usr/local/sbin:$HOME/.local/bin"

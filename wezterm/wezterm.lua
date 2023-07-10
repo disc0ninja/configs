@@ -23,11 +23,11 @@ return {
     saturation = 0.7,
     brightness = 0.7,
   },
-  font_size = 16.0,
+  font_size = 10.0,
   use_fancy_tab_bar = false,
   tab_bar_at_bottom = false,
   hide_tab_bar_if_only_one_tab = true,
-  font = wezterm.font 'Hack Nerd Font Mono',
+  font = wezterm.font_with_fallback({ 'Hack Nerd Font Mono', "Noto Color Emoji" }),
   window_frame = {
     -- The size of the font in the tab bar.
     -- Default to 10. on Windows but 12.0 on other systems

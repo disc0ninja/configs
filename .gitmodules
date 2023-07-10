@@ -1,6 +1,0 @@
-[submodule "dots/XDG_CONFIG/qtile"]
-	path = dots/XDG_CONFIG/qtile
-	url = git@github.com:disc0ninja/qtile-config.git
-[submodule "dots/XDG_CONFIG/nvim"]
-	path = dots/XDG_CONFIG/nvim
-	url = git@github.com:disc0ninja/neovim_config.git
