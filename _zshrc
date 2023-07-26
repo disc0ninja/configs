@@ -35,9 +35,9 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 precmd() {
   vcs_info
   if [[ -z ${vcs_info_msg_0_} ]]; then
-    PS1="%2~ %# "
+    PS1="${VIRTUAL_ENV_PROMPT}%2~ %# "
   else
-    PS1="%2~ %F{magenta}$vcs_info_msg_0_%f %# "
+    PS1="${VIRTUAL_ENV_PROMPT}%2~ %F{magenta}$vcs_info_msg_0_%f %# "
   fi
 }
 
