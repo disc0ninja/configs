@@ -1,12 +1,13 @@
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=10000
-bindkey -v
-bindkey "^R" history-incremental-search-backward
-bindkey -a -r ':'
+unsetopt autocd beep
+bindkey -e
+
+zstyle :compinstall filename "$HOME/.zshrc"
+
 autoload -Uz compinit
 compinit
-
 ##################################################
 # Git stuff with vcs_info
 ##################################################
@@ -19,8 +20,8 @@ zstyle ':vcs_info:*' unstagedstr ' *'
 zstyle ':vcs_info:*' stagedstr ' +'
 zstyle ':vcs_info:*' untrackedstr ' ?'
 # Set the format of the Git information for vcs_info
-zstyle ':vcs_info:git:*' formats       '(%b%u%c%m)'
-zstyle ':vcs_info:git:*' actionformats '(%b|%a%u%c%m)'
+zstyle ':vcs_info:git:*' formats       '%b%u%c%m'
+zstyle ':vcs_info:git:*' actionformats '%b|%a%u%c%m'
 
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 
@@ -33,12 +34,21 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 }
 
 precmd() {
-  vcs_info
-  if [[ -z ${vcs_info_msg_0_} ]]; then
-    PS1="${VIRTUAL_ENV_PROMPT}%2~ %# "
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+    VIRTUAL_ENV_PROMPT="%F{magenta}(%f${VIRTUAL_ENV##*/}%F{magenta})%f"
   else
-    PS1="${VIRTUAL_ENV_PROMPT}%2~ %F{magenta}$vcs_info_msg_0_%f %# "
+    VIRTUAL_ENV_PROMPT=""
   fi
+
+  vcs_info
+
+  if [[ -z ${vcs_info_msg_0_} ]]; then
+    git_vcs_prompt=""
+  else
+    git_vcs_prompt="(%F{magenta}$vcs_info_msg_0_%f)"
+  fi
+
+  PS1="${VIRTUAL_ENV_PROMPT} %2~ ${git_vcs_prompt} %# "
 }
 
 ##################################################
