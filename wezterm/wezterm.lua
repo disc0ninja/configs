@@ -84,29 +84,21 @@ return {
   --------------------------------------------------
   -- Key Maps
   --------------------------------------------------
-  --  leader = { key = 'a', mods = 'ALT', timeout_milliseconds = 1500 },
   keys = {
     --------------------------------------------------
     -- Window/Pane Management
     --------------------------------------------------
-    { key = 'h',     mods = 'ALT',          action = act.EmitEvent 'ActivatePaneDirection-left' },
-    { key = 'j',     mods = 'ALT',          action = act.EmitEvent 'ActivatePaneDirection-down' },
-    { key = 'k',     mods = 'ALT',          action = act.EmitEvent 'ActivatePaneDirection-up' },
-    { key = 'l',     mods = 'ALT',          action = act.EmitEvent 'ActivatePaneDirection-right' },
-    { key = ';',     mods = 'ALT',          action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
-    { key = "'",     mods = 'ALT',          action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
-    -- { key = 'h',     mods = 'ALT',          action = act.ActivatePaneDirection 'Left' },
-    -- { key = 'j',     mods = 'ALT',          action = act.ActivatePaneDirection 'Down' },
-    -- { key = 'k',     mods = 'ALT',          action = act.ActivatePaneDirection 'Up' },
-    -- { key = 'l',     mods = 'ALT',          action = act.ActivatePaneDirection 'Right' },
-    { key = 'h',     mods = 'ALT|SHIFT',    action = act.AdjustPaneSize { 'Left', 5 } },
-    { key = 'j',     mods = 'ALT|SHIFT',    action = act.AdjustPaneSize { 'Down', 5 } },
-    { key = 'k',     mods = 'ALT|SHIFT',    action = act.AdjustPaneSize { 'Up', 5 } },
-    { key = 'l',     mods = 'ALT|SHIFT',    action = act.AdjustPaneSize { 'Right', 5 } },
-    { key = 'Space', mods = 'LEADER',       action = act.RotatePanes 'Clockwise' },
-    { key = 'Space', mods = 'LEADER|SHIFT', action = act.RotatePanes 'CounterClockwise', },
-    { key = 's',     mods = 'LEADER',       action = act.PaneSelect { alphabet = '1234567890', }, },
-    { key = "z",     mods = "LEADER",       action = "TogglePaneZoomState" },
+    { key = 'h',     mods = 'ALT',       action = act.EmitEvent 'ActivatePaneDirection-left' },
+    { key = 'j',     mods = 'ALT',       action = act.EmitEvent 'ActivatePaneDirection-down' },
+    { key = 'k',     mods = 'ALT',       action = act.EmitEvent 'ActivatePaneDirection-up' },
+    { key = 'l',     mods = 'ALT',       action = act.EmitEvent 'ActivatePaneDirection-right' },
+    { key = ';',     mods = 'ALT',       action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+    { key = "'",     mods = 'ALT',       action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
+    { key = 'h',     mods = 'ALT|SHIFT', action = act.AdjustPaneSize { 'Left', 5 } },
+    { key = 'j',     mods = 'ALT|SHIFT', action = act.AdjustPaneSize { 'Down', 5 } },
+    { key = 'k',     mods = 'ALT|SHIFT', action = act.AdjustPaneSize { 'Up', 5 } },
+    { key = 'l',     mods = 'ALT|SHIFT', action = act.AdjustPaneSize { 'Right', 5 } },
+    { key = 'Space', mods = 'ALT',       action = act.RotatePanes 'Clockwise' },
+    { key = "z",     mods = "ALT",       action = "TogglePaneZoomState" },
   },
-  --------------------------------------------------
 }

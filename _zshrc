@@ -59,9 +59,7 @@ if [[ "$OSTYPE" =~ "darwin" ]]; then
   alias fly='fly -t main'
   # GPG
   export GPG_TTY=$(tty)
-  #gpg-agent --daemon
-  #eval $(gpg-connect-agent --quiet /bye)
-  ssh-add -q --apple-load-keychain
+  #ssh-add -q --apple-load-keychain
   export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
   export JIRA_AUTH_TYPE='bearer'
   export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin"
@@ -101,7 +99,7 @@ alias ls="ls --color=auto"
 alias k='kubectl'
 alias kg='kubectl get'
 alias vi="nvim"
-#alias tmux="TERM=screen-256color-bce tmux"
+alias tmux="TERM=screen-256color-bce tmux"
 
 #   $PATH   ########################################## 
 export PATH="$PATH:/bin:/usr/bin:/usr/bin/go/bin:/usr/local/bin:/usr/local/go/bin:/sbin:/usr/sbin:/usr/local/sbin:$HOME/.local/bin"
