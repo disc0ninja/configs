@@ -88,9 +88,9 @@ alias wa=whalias
 # aws completion
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
-complete -C '/usr/local/bin/aws_completer' aws
+complete -C '/opt/homebrew//bin/aws_completer' aws
 
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-export PATH="$HOME/.krew/bin:/usr/local/sbin:/usr/local/opt/python/libexec/bin:$PATH:$HOME/.local/bin:$HOME/.docker/bin"
+export PATH="/opt/homebrew/bin/:$HOME/.krew/bin:/usr/local/sbin:/opt/homebrew/opt/python@3.12/libexec/bin:$PATH:$HOME/.local/bin:$HOME/.docker/bin"
 
 export EDITOR=nvim
