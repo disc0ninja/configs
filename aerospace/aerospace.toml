@@ -87,6 +87,9 @@ outer.right =      0
 # balance all windows
 cmd-b = 'balance-sizes'
 
+# Fullscreen the active window
+alt-shift-z = 'fullscreen'
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
