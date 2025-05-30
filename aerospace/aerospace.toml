@@ -84,6 +84,12 @@ outer.right =      0
 # end tell'
 # '''
 
+# Fullscreen active window
+cmd-shift-f = 'fullscreen'
+
+# Minimize active window
+cmd-shift-m = 'macos-native-minimize'
+
 # balance all windows
 cmd-b = 'balance-sizes'
 

@@ -1,9 +1,8 @@
 # vim: set sw=2 ts=2 et
 
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-export PATH="$HOME/.local/bin:$HOME/.krew/bin:$HOME/.docker/bin:$HOME/go/bin:/opt/homebrew/bin:$PATH"
-
 source <(/opt/homebrew/bin/fzf --zsh)
+export PATH="$HOME/.local/bin:/opt/homebrew/bin:/opt/homebrew/opt/openjdk/bin:$HOME/.krew/bin:$HOME/.docker/bin:$HOME/go/bin:$PATH"
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -14,6 +13,20 @@ fi
 
 # Set emacs mode even though EDITOR is set to n?vim
 bindkey -e
+func check_etcd_for_all_members() {
+	for m in $(kubectl get no -o wide --no-headers 2>/dev/null | grep control | tr -s ' ' | cut -d' ' -f 6) ;do
+		echo $m
+		for p in $(kubectl get po -n kube-system | grep etcd-manager | tr -s ' ' | cut -d' ' -f1) ; do
+			echo "checking for $m in $p"
+			kubectl logs -n kube-system $p 2>/dev/null | grep -c $m
+			sleep 1;
+		done
+	done
+}
+
+func ggpush() {
+  git push -u origin "$(git branch -q 2>/dev/null | grep '\*' 2>/dev/null | cut -w -f2 2>/dev/null)"
+}
 
 # aliases
 alias g=git
@@ -25,16 +38,20 @@ alias gst="git status"
 alias gl="git pull"
 alias gf="git fetch"
 alias gd="git diff"
+alias gds="git diff --staged"
 alias gb="git branch"
 alias gbd="git branch -D"
 alias gcb="git checkout -b"
 alias gcm="git commit -m"
 alias gsd="git stash drop"
 alias gs="git stash"
+alias k="kubectl"
+alias rda="source ~/.local/scripts/rdauth.sh"
 alias zshed="nvim ~/.zshrc"
 alias nved="nvim ~/.config/nvim/init.lua"
 alias vi="nvim"
 alias rezsh="source ~/.zshrc"
+alias d22="docker run -it --rm -v $(pwd):/opt/workingdir timbuntu:22.04 /bin/bash"
 # colorize commands
 alias ls='ls --color=auto'
 alias less='less --color=auto'
@@ -54,7 +71,7 @@ zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr '*'
 zstyle ':vcs_info:*' stagedstr '+'
-zstyle ':vcs_info:git:*' formats       '%F{#40a02b}%b%f%F{#40a02b}%c%f%F{#df8e1d}%u%f '
+zstyle ':vcs_info:git:*' formats       '%F{#0ce927}%b%f%F{#40a02b}%c%f%F{#df8e1d}%u%f '
 zstyle ':vcs_info:git:*' actionformats '%F{#40a02b}%b%f|%F{#d20f39}%a%f%F{#40a02b}%c%f%F{#df8e1d}%u%f '
 
 
