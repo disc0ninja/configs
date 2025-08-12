@@ -8,7 +8,6 @@ source ${zsh_plugins}.zsh
 
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 source <(/opt/homebrew/bin/fzf --zsh)
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 export PATH="$HOME/.local/bin:/opt/homebrew/bin:/opt/homebrew/opt/openjdk/bin:$HOME/.krew/bin:$HOME/.docker/bin:$HOME/go/bin:$PATH"
 
 # Preferred editor for local and remote sessions
@@ -94,5 +93,4 @@ source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
 antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
 
 PROMPT='%F{#ccd0da}(%f%F{#04a5e5}%j%f%F{#ccd0da})%f %F{#04a5e5}%2~%f ${vcs_info_msg_0_}%F{#ccd0da}%#%f '
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
