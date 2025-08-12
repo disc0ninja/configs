@@ -88,7 +88,7 @@ outer.right =      0
 cmd-shift-f = 'fullscreen'
 
 # Minimize active window
-cmd-shift-m = 'macos-native-minimize'
+# cmd-shift-m = 'macos-native-minimize'
 
 # balance all windows
 cmd-b = 'balance-sizes'

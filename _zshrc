@@ -14,6 +14,7 @@ fi
 
 # Set emacs mode even though EDITOR is set to n?vim
 bindkey -e
+bindkey "^[[3~" delete-char
 func check_etcd_for_all_members() {
 	for m in $(kubectl get no -o wide --no-headers 2>/dev/null | grep control | tr -s ' ' | cut -d' ' -f 6) ;do
 		echo $m
@@ -81,5 +82,9 @@ zstyle ':vcs_info:*' stagedstr '+'
 zstyle ':vcs_info:git:*' formats       '%F{#0ce927}%b%f%F{#40a02b}%c%f%F{#df8e1d}%u%f '
 zstyle ':vcs_info:git:*' actionformats '%F{#40a02b}%b%f|%F{#d20f39}%a%f%F{#40a02b}%c%f%F{#df8e1d}%u%f '
 
+
+# antidote
+source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
 
 PROMPT='%F{#ccd0da}(%f%F{#04a5e5}%j%f%F{#ccd0da})%f %F{#04a5e5}%2~%f ${vcs_info_msg_0_}%F{#ccd0da}%#%f '

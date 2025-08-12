@@ -1,0 +1,15 @@
+[env]
+TERM="xterm-256color"
+[font]
+size=15
+
+[window]
+option_as_alt="Both"
+
+
+[selection]
+save_to_clipboard=true
+
+[[keyboard.bindings]]
+key="Delete"
+chars="\u001b[3~"

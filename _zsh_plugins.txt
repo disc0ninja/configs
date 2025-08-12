@@ -1,0 +1,4 @@
+# https://github.com/mattmc3/antidote
+zsh-users/zsh-syntax-highlighting kind:defer
+zsh-users/zsh-autosuggestions kind:defer
+zsh-users/zsh-history-substring-search kind:defer
